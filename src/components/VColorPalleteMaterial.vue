@@ -4,9 +4,9 @@
          :style="colorGroupStyle"
          :title="colorGroupKey"
          v-for="(colorGroup, colorGroupKey) in colorGroups">
-      <div :key="color.key"
+      <div :key="color.name"
            :style="colorStyle(color)"
-           :title="color.key"
+           :title="color.name"
            v-for="color in colorGroupColors(colorGroup)">
       </div>
     </div>
@@ -49,19 +49,19 @@ export default {
       const colors = [];
 
 
-      each(colorGroup, (value, key) => {
+      each(colorGroup, (value, name) => {
         let priority = 0;
         let isGroupEnd = false;
         let isBase = false;
-        if (startsWith(key, 'accent')) {
+        if (startsWith(name, 'accent')) {
           priority = 2;
-          isGroupEnd = endsWith(key, '4');
-        } else if (startsWith(key, 'darken')) {
+          isGroupEnd = endsWith(name, '4');
+        } else if (startsWith(name, 'darken')) {
           priority = 3;
-          isGroupEnd = endsWith(key, '4');
-        } else if (startsWith(key, 'lighten')) {
+          isGroupEnd = endsWith(name, '4');
+        } else if (startsWith(name, 'lighten')) {
           priority = 4;
-          isGroupEnd = endsWith(key, '5');
+          isGroupEnd = endsWith(name, '5');
         } else {
           priority = 1;
           isGroupEnd = true;
@@ -70,14 +70,14 @@ export default {
 
         colors.push({
           priority,
-          key,
+          name,
           value,
           isBase,
           isGroupEnd,
         });
       });
 
-      return sortBy(colors, ['priority', 'key']);
+      return sortBy(colors, ['priority', 'name']);
     },
     colorStyle(color) {
       return {
