@@ -3,16 +3,16 @@
           show-arrows
           color="primary"
           slider-color="secondary"
-          v-model="activePalleteIndex">
-    <v-tab :key="pallete.key"
-           :href="pallete.key"
-           v-for="pallete in palletes">
-      {{pallete.name}}
+          v-model="activePaletteIndex">
+    <v-tab :key="palette.key"
+           :href="palette.key"
+           v-for="palette in palettes">
+      {{palette.name}}
     </v-tab>
-    <v-tab-item :id="pallete.key"
-                :key="pallete.key"
-                v-for="pallete in palletes">
-      <component :is="pallete.component"
+    <v-tab-item :id="palette.key"
+                :key="palette.key"
+                v-for="palette in palettes">
+      <component :is="palette.component"
                  :value="value"
                  @input="setColor">
       </component>
@@ -21,12 +21,12 @@
 </template>
 
 <script>
-import VColorPalleteMaterial from './VColorPalleteMaterial';
+import VColorPaletteMaterial from './VColorPaletteMaterial';
 
 export default {
   name: 'VColorPicker',
   components: {
-    VColorPalleteMaterial,
+    VColorPaletteMaterial,
   },
   props: {
     value: {
@@ -39,10 +39,10 @@ export default {
   },
   data() {
     return {
-      activePalleteIndex: 0,
+      activePaletteIndex: 0,
       color: null,
-      palletes: [
-        { key: 'material', name: 'Material', component: 'VColorPalleteMaterial' },
+      palettes: [
+        { key: 'material', name: 'Material', component: 'VColorPaletteMaterial' },
       ],
     };
   },

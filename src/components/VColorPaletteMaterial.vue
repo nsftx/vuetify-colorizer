@@ -1,5 +1,5 @@
 <template>
-  <div class="colorizer-pallete-material">
+  <div class="colorizer-palette-material">
     <div class="color-group"
          :key="colorGroupIndex"
          v-for="(colorGroup, colorGroupIndex) in colorGroups">
@@ -21,7 +21,7 @@ import { each, endsWith, find, isEqual, isNil, kebabCase, startsWith, sortBy } f
 import materialColors from 'vuetify/es5/util/colors';
 
 export default {
-  name: 'VColorPalleteMaterial',
+  name: 'VColorPaletteMaterial',
   props: {
     value: {
       type: String,
@@ -152,7 +152,7 @@ export default {
 </script>
 
 <style lang="stylus">
-.colorizer-pallete-material {
+.colorizer-palette-material {
   $width = 304px;
   $height = 419px;
   $colorSize = 20px;
