@@ -3,11 +3,11 @@
     <v-menu offset-y
             full-width
             max-width="304px"
-            v-model="visible"
-            :return-value="color">
+            :nudge-top="25"
+            :return-value="color"
+            v-model="visible">
       <v-text-field readonly
                     clearable
-                    hide-details
                     slot="activator"
                     color="primary"
                     :value="colorName"
@@ -42,6 +42,10 @@ export default {
     value: {
       type: String,
     },
+    returnType: {
+      type: String,
+      default: 'color',
+    },
   },
   data() {
     return {
@@ -63,7 +67,7 @@ export default {
     setColor(value) {
       this.color = value;
       this.$emit('input', this.color.name);
-      this.$emit('change', this.color);
+      this.$emit('change', this.returnType === 'color' ? this.color : this.color[this.returnType]);
     },
     setColorName(value) {
       this.color = value;
@@ -80,7 +84,7 @@ export default {
   .color-box-preview {
     position: absolute;
     right: 32px;
-    bottom: 8px;
+    top: 22px;
     width: 20px;
     height: 20px;
   }

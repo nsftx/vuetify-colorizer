@@ -32,6 +32,10 @@ export default {
     value: {
       type: String,
     },
+    returnType: {
+      type: String,
+      default: 'color',
+    },
   },
   data() {
     return {
@@ -46,7 +50,7 @@ export default {
     setColor(value) {
       this.color = value;
       this.$emit('input', this.color.name);
-      this.$emit('change', this.color);
+      this.$emit('change', this.returnType === 'color' ? this.color : this.color[this.returnType]);
     },
   },
 };
