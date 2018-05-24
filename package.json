@@ -1,12 +1,13 @@
 {
   "name": "@nsoft/vuetify-colorizer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build --target lib --name vuetify-colorizer src/index.js",
     "lint": "vue-cli-service lint"
   },
+  "main": "dist/vuetify-colorizer.umd.min.js",
   "dependencies": {
     "lodash": "^4.17.10",
     "vue": "^2.5.16",
