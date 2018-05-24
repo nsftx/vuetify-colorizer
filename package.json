@@ -1,5 +1,5 @@
 {
-  "name": "vuetify-colorizer",
+  "name": "@nsoft/vuetify-colorizer",
   "version": "1.0.0",
   "private": false,
   "scripts": {
