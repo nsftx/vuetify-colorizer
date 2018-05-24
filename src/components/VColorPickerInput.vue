@@ -1,9 +1,7 @@
 <template>
   <div class="colorizer-picker-input">
-    <v-menu offset-y
-            full-width
+    <v-menu full-width
             max-width="304px"
-            :nudge-top="25"
             :return-value="color"
             v-model="visible">
       <v-text-field readonly
@@ -12,15 +10,15 @@
                     color="primary"
                     :value="colorName"
                     :label="label"
-                    @input="setColorName">
+                    @input="clearColor">
       </v-text-field>
       <VColorPicker :value="colorName"
-                    @input="setColorName"
                     @change="setColor">
       </VColorPicker>
     </v-menu>
     <div class="color-box-preview"
          :style="colorStyle"
+         @click="toggleMenu"
          v-if="color">
     </div>
   </div>
@@ -64,14 +62,28 @@ export default {
     },
   },
   methods: {
+    getColorType() {
+      if (this.color) {
+        return this.color[this.returnType];
+      }
+
+      return null;
+    },
+    setChange() {
+      this.$emit('input', this.color ? this.color.name : null);
+      this.$emit('change', this.returnType === 'color' ? this.color : this.getColorType());
+    },
     setColor(value) {
       this.color = value;
-      this.$emit('input', this.color.name);
-      this.$emit('change', this.returnType === 'color' ? this.color : this.color[this.returnType]);
+      this.setChange();
     },
-    setColorName(value) {
-      this.color = value;
+    clearColor() {
+      this.color = null;
       this.visible = false;
+      this.setChange();
+    },
+    toggleMenu() {
+      this.visible = !this.visible;
     },
   },
 };
@@ -87,6 +99,7 @@ export default {
     top: 22px;
     width: 20px;
     height: 20px;
+    cursor: pointer;
   }
 }
 </style>
