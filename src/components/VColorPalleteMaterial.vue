@@ -1,95 +1,195 @@
 <template>
-  <div :style="colorSetStyle">
-    <div :key="colorGroupKey"
-         :style="colorGroupStyle"
-         :title="colorGroupKey"
-         v-for="(colorGroup, colorGroupKey) in colorGroups">
-      <div :key="color.name"
+  <div class="colorizer-pallete-material">
+    <div class="color-group"
+         :key="colorGroupIndex"
+         v-for="(colorGroup, colorGroupIndex) in colorGroups">
+      <div class="color-box"
+           :key="color.name"
+           :class="colorClass(color)"
            :style="colorStyle(color)"
            :title="color.name"
-           v-for="color in colorGroupColors(colorGroup)">
+           @click="setColor(color)"
+           v-for="color in colorGroup.colors">
+        <span v-if="isSelectedColor(color)">&#9679;</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { each, endsWith, startsWith, sortBy } from 'lodash';
+import { each, endsWith, find, isEqual, isNil, kebabCase, startsWith, sortBy } from 'lodash';
 import materialColors from 'vuetify/es5/util/colors';
 
 export default {
   name: 'VColorPalleteMaterial',
+  props: {
+    value: {
+      type: String,
+    },
+  },
   data() {
     return {
       materialColors,
+      color: null,
+      colors: null,
+      colorGroups: null,
     };
   },
-  computed: {
-    colorGroups() {
-      return this.materialColors;
-    },
-    colorGroupStyle() {
-      return {
-        float: 'left',
-        width: '304px',
-        height: '20px',
-        marginBottom: '1px',
-      };
-    },
-    colorSetStyle() {
-      return {
-        width: '304px',
-        height: '419px',
-        backgroundColor: 'whitesmoke',
-      };
+  watch: {
+    value() {
+      this.setColorFromInput();
     },
   },
   methods: {
-    colorGroupColors(colorGroup) {
-      const colors = [];
+    colorName(groupName, name, isBase) {
+      if (groupName === 'shades') {
+        return name;
+      } else if (isBase) {
+        return groupName;
+      }
 
+      return `${kebabCase(groupName)} ${kebabCase(name)}`;
+    },
+    colorClass(color) {
+      const classes = [];
 
-      each(colorGroup, (value, name) => {
-        let priority = 0;
-        let isGroupEnd = false;
-        let isBase = false;
-        if (startsWith(name, 'accent')) {
-          priority = 2;
-          isGroupEnd = endsWith(name, '4');
-        } else if (startsWith(name, 'darken')) {
-          priority = 3;
-          isGroupEnd = endsWith(name, '4');
-        } else if (startsWith(name, 'lighten')) {
-          priority = 4;
-          isGroupEnd = endsWith(name, '5');
-        } else {
-          priority = 1;
-          isGroupEnd = true;
-          isBase = true;
-        }
+      if (color.isBase) {
+        classes.push('color-box-base');
+      }
 
-        colors.push({
-          priority,
-          name,
-          value,
-          isBase,
-          isGroupEnd,
-        });
-      });
+      if (color.isLight) {
+        classes.push('color-box-light');
+      }
 
-      return sortBy(colors, ['priority', 'name']);
+      if (color.isGroupEnd || color.isBase) {
+        classes.push('color-box-end');
+      }
+
+      return classes;
     },
     colorStyle(color) {
       return {
-        float: 'left',
-        width: color.isBase ? '40px' : '20px',
-        height: '20px',
-        cursor: 'pointer',
         backgroundColor: color.value,
-        border: `1px solid ${color.value}`,
-        marginRight: color.isGroupEnd || color.isBase ? '1px' : 0,
       };
     },
+    colorWeight(colorName) {
+      return Number(colorName.substring(colorName.length - 1));
+    },
+    isSelectedColor(color) {
+      return isEqual(color, this.color);
+    },
+    setColor(color) {
+      this.color = color;
+      this.$emit('input', {
+        name: color.name,
+        value: color.value,
+      });
+    },
+    setColorFromInput() {
+      if (isNil(this.value)) {
+        this.color = null;
+      } else {
+        this.color = find(this.colors, { name: this.value });
+      }
+    },
+    setColors() {
+      const colors = [];
+      const colorGroups = [];
+
+      each(this.materialColors, (group, groupName) => {
+        const colorGroupColors = [];
+        each(group, (value, name) => {
+          let priority = 0;
+          let isGroupEnd = false;
+          let isBase = false;
+          let isLight = false;
+          if (startsWith(name, 'accent')) {
+            priority = 2;
+            isGroupEnd = endsWith(name, '4');
+            isLight = this.colorWeight(name) <= 2;
+          } else if (startsWith(name, 'darken')) {
+            priority = 3;
+            isGroupEnd = endsWith(name, '4');
+          } else if (startsWith(name, 'lighten')) {
+            priority = 4;
+            isGroupEnd = endsWith(name, '5');
+            isLight = this.colorWeight(name) >= 3;
+          } else {
+            priority = 1;
+            isGroupEnd = true;
+            isBase = true;
+            isLight = ['white', 'transparent'].indexOf(name) > -1;
+          }
+
+          const color = {
+            priority,
+            name: this.colorName(groupName, name, isBase),
+            value,
+            isBase,
+            isGroupEnd,
+            isLight,
+          };
+
+          colors.push(color);
+          colorGroupColors.push(color);
+        });
+
+        colorGroups.push({
+          name: groupName,
+          colors: sortBy(colorGroupColors, ['priority', 'name']),
+        });
+      });
+
+      this.colors = colors;
+      this.colorGroups = colorGroups;
+    },
+  },
+  created() {
+    this.setColors();
+    this.setColorFromInput();
   },
 };
 </script>
+
+<style lang="stylus">
+.colorizer-pallete-material {
+  $width = 304px;
+  $height = 419px;
+  $colorSize = 20px;
+  width: $width;
+  height: $height;
+  background-color: whitesmoke;
+
+  .color-group {
+    float: left;
+    width: $width;
+    height: $colorSize;
+    margin-bottom: 1px;
+  }
+
+  .color-box {
+    float: left;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    cursor: pointer;
+    background-color: whitesmoke;
+    margin-right: 0;
+    text-align: center;
+    font-size: 14px;
+    color: white;
+
+    &-base {
+      width: 40px;
+    }
+
+    &-light {
+      color: black;
+    }
+
+    &-end {
+      margin-right: 1px;
+    }
+  }
+}
+</style>

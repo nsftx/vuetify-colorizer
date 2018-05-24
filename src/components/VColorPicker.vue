@@ -2,13 +2,20 @@
   <v-tabs dark
           show-arrows
           color="primary"
+          slider-color="secondary"
           v-model="activePalleteIndex">
     <v-tab :key="pallete.key"
+           :href="pallete.key"
            v-for="pallete in palletes">
       {{pallete.name}}
     </v-tab>
-    <v-tab-item>
-      <VColorPalleteMaterial></VColorPalleteMaterial>
+    <v-tab-item :id="pallete.key"
+                :key="pallete.key"
+                v-for="pallete in palletes">
+      <component :is="pallete.component"
+                 :value="value"
+                 @input="setColor">
+      </component>
     </v-tab-item>
   </v-tabs>
 </template>
@@ -21,13 +28,26 @@ export default {
   components: {
     VColorPalleteMaterial,
   },
+  props: {
+    value: {
+      type: String,
+    },
+  },
   data() {
     return {
       activePalleteIndex: 0,
+      color: null,
       palletes: [
-        { key: 'material', name: 'Material' },
+        { key: 'material', name: 'Material', component: 'VColorPalleteMaterial' },
       ],
     };
+  },
+  methods: {
+    setColor(value) {
+      this.color = value;
+      this.$emit('input', this.color.name);
+      this.$emit('change', this.color);
+    },
   },
 };
 </script>

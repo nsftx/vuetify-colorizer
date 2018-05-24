@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --open",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --target lib --name vuetify-colorizer src/index.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -17,12 +17,23 @@
     "@vue/cli-plugin-eslint": "^3.0.0-beta.11",
     "@vue/cli-service": "^3.0.0-beta.11",
     "@vue/eslint-config-airbnb": "^3.0.0-beta.11",
+    "babel-plugin-lodash": "^3.3.2",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
     "vue-template-compiler": "^2.5.16"
+  },
+  "babel": {
+    "plugins": [
+      "lodash"
+    ],
+    "presets": [
+      "@vue/app"
+    ]
   },
   "eslintConfig": {
     "root": true,
     "env": {
-      "node": true
+      "browser": true
     },
     "extends": [
       "plugin:vue/essential",

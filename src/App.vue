@@ -1,16 +1,21 @@
 <template>
-  <div id="app">
-    <VColorPicker></VColorPicker>
-  </div>
+  <v-app id="app">
+    <VColorPickerInput v-model="color"></VColorPickerInput>
+  </v-app>
 </template>
 
 <script>
-import VColorPicker from './components/VColorPicker';
+import VColorPickerInput from './components/VColorPickerInput';
 
 export default {
   name: 'app',
   components: {
-    VColorPicker,
+    VColorPickerInput,
+  },
+  data() {
+    return {
+      color: null,
+    };
   },
 };
 </script>
