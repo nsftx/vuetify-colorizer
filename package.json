@@ -1,7 +1,7 @@
 {
   "name": "vuetify-colorizer",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build --target lib --name vuetify-colorizer src/index.js",
