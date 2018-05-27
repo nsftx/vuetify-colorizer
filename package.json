@@ -21,7 +21,8 @@
     "babel-plugin-lodash": "^3.3.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
-    "vue-template-compiler": "^2.5.16"
+    "vue-template-compiler": "^2.5.16",
+    "webpack-bundle-analyzer": "^2.13.1"
   },
   "babel": {
     "plugins": [
