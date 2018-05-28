@@ -5,7 +5,14 @@
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build --target lib --name vuetify-colorizer src/index.js",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "test": "npm run lint && jest",
+    "coverage": "npm test && codecov"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chmjs/vuetify-colorizer"
   },
   "main": "dist/vuetify-colorizer.umd.min.js",
   "dependencies": {
@@ -18,9 +25,16 @@
     "@vue/cli-plugin-eslint": "^3.0.0-beta.11",
     "@vue/cli-service": "^3.0.0-beta.11",
     "@vue/eslint-config-airbnb": "^3.0.0-beta.11",
+    "@vue/test-utils": "^1.0.0-beta.16",
+    "babel-jest": "^23.0.1",
     "babel-plugin-lodash": "^3.3.2",
+    "babel-preset-env": "^1.7.0",
+    "codecov": "^3.0.2",
+    "eslint-plugin-jest": "^21.17.0",
+    "jest": "^23.0.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
+    "vue-jest": "^2.6.0",
     "vue-template-compiler": "^2.5.16",
     "webpack-bundle-analyzer": "^2.13.1"
   },
@@ -29,17 +43,22 @@
       "lodash"
     ],
     "presets": [
+      "babel-preset-env",
       "@vue/app"
     ]
   },
   "eslintConfig": {
     "root": true,
     "env": {
-      "browser": true
+      "browser": true,
+      "jest/globals": true
     },
     "extends": [
       "plugin:vue/essential",
       "@vue/airbnb"
+    ],
+    "plugins": [
+      "jest"
     ],
     "rules": {
       "import/extensions": [
@@ -54,6 +73,27 @@
     },
     "parserOptions": {
       "parser": "babel-eslint"
+    }
+  },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js}"
+    ],
+    "coverageDirectory": "./test/coverage/",
+    "coverageReporters": [
+      "text",
+      "lcov",
+      "json"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest",
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
     }
   },
   "postcss": {
