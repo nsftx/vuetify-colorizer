@@ -11,6 +11,7 @@
     "prepublish": "npm run build"
   },
   "license": "MIT",
+  "author": "Chameleon Team <chameleon@nsoft.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/chmjs/vuetify-colorizer"
