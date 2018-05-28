@@ -43,7 +43,6 @@
       "lodash"
     ],
     "presets": [
-      "babel-preset-env",
       "@vue/app"
     ]
   },

@@ -17,8 +17,9 @@
 </template>
 
 <script>
-import { each, endsWith, find, isEqual, isNil, kebabCase, startsWith, sortBy } from 'lodash';
+import { each, find, isNil, sortBy } from 'lodash';
 import materialColors from 'vuetify/es5/util/colors';
+import { toKebabCase } from '../utility';
 
 export default {
   name: 'VColorPaletteMaterial',
@@ -48,7 +49,7 @@ export default {
         return groupName;
       }
 
-      return `${kebabCase(groupName)} ${kebabCase(name)}`;
+      return `${toKebabCase(groupName)} ${toKebabCase(name)}`;
     },
     colorClass(color) {
       const classes = [];
@@ -76,14 +77,11 @@ export default {
       return Number(colorName.substring(colorName.length - 1));
     },
     isSelectedColor(color) {
-      return isEqual(color, this.color);
+      return this.color && color.name === this.color.name;
     },
     setColor(color) {
       this.color = color;
-      this.$emit('input', {
-        name: color.name,
-        value: color.value,
-      });
+      this.sendColorChange();
     },
     setColorFromInput() {
       if (isNil(this.value)) {
@@ -103,16 +101,16 @@ export default {
           let isGroupEnd = false;
           let isBase = false;
           let isLight = false;
-          if (startsWith(name, 'accent')) {
+          if (name.startsWith('accent')) {
             priority = 2;
-            isGroupEnd = endsWith(name, '4');
+            isGroupEnd = name.endsWith('4');
             isLight = this.colorWeight(name) <= 2;
-          } else if (startsWith(name, 'darken')) {
+          } else if (name.startsWith('darken')) {
             priority = 3;
-            isGroupEnd = endsWith(name, '4');
-          } else if (startsWith(name, 'lighten')) {
+            isGroupEnd = name.endsWith('4');
+          } else if (name.startsWith('lighten')) {
             priority = 4;
-            isGroupEnd = endsWith(name, '5');
+            isGroupEnd = name.endsWith('5');
             isLight = this.colorWeight(name) >= 3;
           } else {
             priority = 1;
@@ -143,10 +141,22 @@ export default {
       this.colors = colors;
       this.colorGroups = colorGroups;
     },
+    sendColorChange() {
+      let color = null;
+      if (this.color) {
+        color = {
+          name: this.color.name,
+          value: this.color.value,
+        };
+      }
+
+      this.$emit('input', color);
+    },
   },
-  created() {
+  mounted() {
     this.setColors();
     this.setColorFromInput();
+    this.sendColorChange();
   },
 };
 </script>

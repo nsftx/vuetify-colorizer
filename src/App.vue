@@ -14,7 +14,7 @@ export default {
   },
   data() {
     return {
-      color: null,
+      color: 'red darken2',
     };
   },
 };
