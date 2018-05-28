@@ -1,13 +1,14 @@
 {
   "name": "@nsoft/vuetify-colorizer",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build --target lib --name vuetify-colorizer src/index.js",
     "lint": "vue-cli-service lint",
     "test": "npm run lint && jest",
-    "coverage": "npm test && codecov"
+    "coverage": "npm test && codecov",
+    "prepublish": "npm run build"
   },
   "license": "MIT",
   "repository": {
