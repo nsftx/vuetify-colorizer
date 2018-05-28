@@ -142,15 +142,12 @@ export default {
       this.colorGroups = colorGroups;
     },
     sendColorChange() {
-      let color = null;
       if (this.color) {
-        color = {
+        this.$emit('input', {
           name: this.color.name,
           value: this.color.value,
-        };
+        });
       }
-
-      this.$emit('input', color);
     },
   },
   mounted() {
