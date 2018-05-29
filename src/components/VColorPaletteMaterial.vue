@@ -44,9 +44,9 @@ export default {
   methods: {
     colorName(groupName, name, isBase) {
       if (groupName === 'shades') {
-        return name;
+        return toKebabCase(name);
       } else if (isBase) {
-        return groupName;
+        return toKebabCase(groupName);
       }
 
       return `${toKebabCase(groupName)} ${toKebabCase(name)}`;
