@@ -5,12 +5,11 @@
           slider-color="secondary"
           v-model="activePaletteIndex">
     <v-tab :key="palette.key"
-           :href="palette.key"
-           v-for="palette in palettes">
+           @click="setPalleteIndex(index)"
+           v-for="(palette, index) in palettes">
       {{palette.name}}
     </v-tab>
-    <v-tab-item :id="palette.key"
-                :key="palette.key"
+    <v-tab-item :key="palette.key"
                 v-for="palette in palettes">
       <component :is="palette.component"
                  :value="value"
@@ -47,6 +46,9 @@ export default {
     };
   },
   methods: {
+    setPalleteIndex(index) {
+      this.activePaletteIndex = index;
+    },
     setColor(value) {
       this.color = value;
       this.$emit('input', this.color.name);
