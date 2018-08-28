@@ -1,6 +1,6 @@
 {
   "name": "@nsoft/vuetify-colorizer",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve --open",
