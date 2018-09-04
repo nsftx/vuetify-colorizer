@@ -9,6 +9,9 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = {
   configureWebpack: {
+    output: {
+      libraryExport: 'default',
+    },
     plugins,
   },
 };
