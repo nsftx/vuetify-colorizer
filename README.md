@@ -17,7 +17,15 @@ npm install @nsoft/vuetify-colorizer
 
 ## Using
 
-### Import
+### Import styles
+
+You need to import colorizer style in your main stylesheet file or component. Example of importing in `stylus` file:
+
+```stylus
+@import '@nsoft/vuetify-colorizer/dist/vuetify-colorizer.css';
+```
+
+### Import script
 
 ```javascript
 import Vue from 'vue';
@@ -35,7 +43,7 @@ new Vue({
 });
 ```
 
-### Import locally
+### Import component locally
 
 ```javascript
 import { VColorPickerInput } from '@nsoft/vuetify-colorizer';
