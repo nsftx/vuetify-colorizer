@@ -2,6 +2,7 @@
 node_modules
 /dist
 .history
+/test/coverage
 
 # local env files
 .env.local
