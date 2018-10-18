@@ -12,7 +12,8 @@
                     :label="label"
                     @input="clearColor">
       </v-text-field>
-      <VColorPicker :value="colorName"
+      <VColorPicker :hide-tabs="hideTabs"
+                    :value="colorName"
                     @change="setColor">
       </VColorPicker>
     </v-menu>
@@ -33,6 +34,10 @@ export default {
     VColorPicker,
   },
   props: {
+    hideTabs: {
+      type: Boolean,
+      default: false,
+    },
     label: {
       type: String,
       default: 'Color',

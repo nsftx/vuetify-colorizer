@@ -3,6 +3,7 @@
           show-arrows
           color="primary"
           slider-color="secondary"
+          :class="{ 'hidden-bars': hideTabs }"
           v-model="activePaletteIndex">
     <v-tab :key="palette.key"
            @click="setPalleteIndex(index)"
@@ -28,6 +29,10 @@ export default {
     VColorPaletteMaterial,
   },
   props: {
+    hideTabs: {
+      type: Boolean,
+      default: false,
+    },
     value: {
       type: String,
     },
@@ -41,7 +46,11 @@ export default {
       activePaletteIndex: 0,
       color: null,
       palettes: [
-        { key: 'material', name: 'Material', component: 'VColorPaletteMaterial' },
+        {
+          key: 'material',
+          name: 'Material',
+          component: 'VColorPaletteMaterial',
+        },
       ],
     };
   },
@@ -57,3 +66,9 @@ export default {
   },
 };
 </script>
+
+<style lang="stylus">
+.v-tabs.hidden-bars .v-tabs__bar {
+  display: none;
+}
+</style>
