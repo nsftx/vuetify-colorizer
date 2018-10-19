@@ -55,13 +55,16 @@ export default {
     };
   },
   methods: {
+    getColorByReturnType() {
+      return this.returnType === 'color' ? this.color : this.color[this.returnType];
+    },
     setPalleteIndex(index) {
       this.activePaletteIndex = index;
     },
     setColor(value) {
       this.color = value;
       this.$emit('input', this.color.name);
-      this.$emit('change', this.returnType === 'color' ? this.color : this.color[this.returnType]);
+      this.$emit('change', this.getColorByReturnType());
     },
   },
 };

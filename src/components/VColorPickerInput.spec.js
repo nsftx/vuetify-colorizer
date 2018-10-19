@@ -3,6 +3,9 @@ import Vuetify from 'vuetify';
 import { mount } from '@vue/test-utils';
 import VColorPickerInput from './VColorPickerInput';
 
+// https://github.com/vuejs/vue-test-utils/issues/532
+Vue.config.silent = true;
+
 // Handle Vuetify and the root element
 Vue.use(Vuetify);
 const rootAppElement = document.createElement('div');
