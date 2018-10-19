@@ -18,6 +18,7 @@
       </VColorPicker>
     </v-menu>
     <div class="color-box-preview"
+         :class="color.name"
          :style="colorStyle"
          @click="toggleMenu"
          v-if="color">
@@ -78,8 +79,13 @@ export default {
       this.$emit('input', this.color ? this.color.name : null);
       this.$emit('change', this.returnType === 'color' ? this.color : this.getColorType());
     },
-    setColor(value) {
-      this.color = value;
+    setColor(color) {
+      if (this.color && color) {
+        Object.assign(this.color, color);
+      } else {
+        this.color = color;
+      }
+
       this.setChange();
     },
     clearColor() {
@@ -89,6 +95,20 @@ export default {
     },
     toggleMenu() {
       this.visible = !this.visible;
+    },
+  },
+  watch: {
+    value: {
+      handler(value) {
+        if (typeof value === 'string') {
+          this.setColor({
+            name: value,
+          });
+        } else {
+          this.setColor(value);
+        }
+      },
+      immediate: true,
     },
   },
 };

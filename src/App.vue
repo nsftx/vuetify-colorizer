@@ -14,8 +14,13 @@ export default {
   },
   data() {
     return {
-      color: 'red darken2',
+      color: 'red darken-2',
     };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.color = null;
+    }, 5000);
   },
 };
 </script>

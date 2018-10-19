@@ -89,6 +89,8 @@ export default {
       } else {
         this.color = find(this.colors, { name: this.value });
       }
+
+      this.sendColorChange();
     },
     setColors() {
       const colors = [];
@@ -153,7 +155,6 @@ export default {
   mounted() {
     this.setColors();
     this.setColorFromInput();
-    this.sendColorChange();
   },
 };
 </script>
