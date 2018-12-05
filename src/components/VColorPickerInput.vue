@@ -10,6 +10,7 @@
                     color="primary"
                     :value="colorName"
                     :label="label"
+                    :disabled="disabled"
                     @input="clearColor">
       </v-text-field>
       <VColorPicker :hide-tabs="hideTabs"
@@ -49,6 +50,10 @@ export default {
     returnType: {
       type: String,
       default: 'color',
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
