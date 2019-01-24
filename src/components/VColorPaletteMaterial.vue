@@ -17,9 +17,7 @@
 </template>
 
 <script>
-import {
-  each, find, isNil, sortBy,
-} from 'lodash';
+import { each, find, isNil, sortBy } from 'lodash';
 import materialColors from 'vuetify/es5/util/colors';
 import { toKebabCase } from '../utility';
 
@@ -47,7 +45,9 @@ export default {
     colorName(groupName, name, isBase) {
       if (groupName === 'shades') {
         return toKebabCase(name);
-      } if (isBase) {
+      } 
+      
+      if (isBase) {
         return toKebabCase(groupName);
       }
 
