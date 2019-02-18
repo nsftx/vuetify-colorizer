@@ -34,7 +34,7 @@ export default {
       default: false,
     },
     value: {
-      type: String,
+      type: [Object, String],
     },
     returnType: {
       type: String,
@@ -61,10 +61,11 @@ export default {
     setPalleteIndex(index) {
       this.activePaletteIndex = index;
     },
-    setColor(value) {
-      this.color = value;
-      this.$emit('input', this.color.name);
-      this.$emit('change', this.getColorByReturnType());
+    setColor(color) {
+      this.color = color;
+      const value = this.getColorByReturnType();
+
+      this.$emit('change', value);
     },
   },
 };
