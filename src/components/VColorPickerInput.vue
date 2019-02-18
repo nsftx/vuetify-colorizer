@@ -16,7 +16,7 @@
       <VColorPicker :hide-tabs="hideTabs"
                     :value="value"
                     :return-type="returnType"
-                    @change="setColor">
+                    @input="setColor">
       </VColorPicker>
     </v-menu>
     <div class="color-box-preview"
@@ -32,6 +32,7 @@
 import {
   isString,
   isObject,
+  isNil,
   startsWith,
 } from 'lodash';
 
@@ -71,7 +72,7 @@ export default {
   },
   computed: {
     colorName() {
-      return this.returnType === 'color' ? this.color.name : this.getColorType();
+      return isObject(this.color) && !isNil(this.color) ? this.color.name : null;
     },
     colorStyle() {
       return {

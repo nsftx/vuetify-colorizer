@@ -27,7 +27,7 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      this.color = '#ff0000';
+      this.color = '#f44336';
       console.log('setting color =>', JSON.stringify(this.color));
     }, 5000);
   },

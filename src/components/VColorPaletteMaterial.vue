@@ -107,6 +107,8 @@ export default {
         } else {
           this.color = find(this.colors, { name: this.value });
         }
+
+        this.sendColorChange();
       }
     },
     setColors() {

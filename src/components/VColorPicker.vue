@@ -56,7 +56,11 @@ export default {
   },
   methods: {
     getColorByReturnType() {
-      return this.returnType === 'color' ? this.color : this.color[this.returnType];
+      if (this.color) {
+        return this.returnType === 'color' ? this.color : this.color[this.returnType];
+      }
+
+      return null;
     },
     setPalleteIndex(index) {
       this.activePaletteIndex = index;
@@ -65,6 +69,7 @@ export default {
       this.color = color;
       const value = this.getColorByReturnType();
 
+      this.$emit('input', this.color);
       this.$emit('change', value);
     },
   },
