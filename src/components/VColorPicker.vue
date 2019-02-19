@@ -34,7 +34,7 @@ export default {
       default: false,
     },
     value: {
-      type: String,
+      type: [Object, String],
     },
     returnType: {
       type: String,
@@ -56,15 +56,21 @@ export default {
   },
   methods: {
     getColorByReturnType() {
-      return this.returnType === 'color' ? this.color : this.color[this.returnType];
+      if (this.color) {
+        return this.returnType === 'color' ? this.color : this.color[this.returnType];
+      }
+
+      return null;
     },
     setPalleteIndex(index) {
       this.activePaletteIndex = index;
     },
-    setColor(value) {
-      this.color = value;
-      this.$emit('input', this.color.name);
-      this.$emit('change', this.getColorByReturnType());
+    setColor(color) {
+      this.color = color;
+      const value = this.getColorByReturnType();
+
+      this.$emit('input', this.color);
+      this.$emit('change', value);
     },
   },
 };

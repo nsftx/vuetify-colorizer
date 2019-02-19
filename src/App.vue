@@ -1,6 +1,9 @@
 <template>
   <v-app id="app">
-    <VColorPickerInput v-model="color"></VColorPickerInput>
+    <VColorPickerInput v-model="color"
+                       return-type="value"
+                       @change="showColor">
+    </VColorPickerInput>
   </v-app>
 </template>
 
@@ -14,12 +17,18 @@ export default {
   },
   data() {
     return {
-      color: 'red darken-2',
+      color: null,
     };
+  },
+  methods: {
+    showColor(value) {
+      console.log('selected =>', JSON.stringify(value));
+    },
   },
   mounted() {
     setTimeout(() => {
-      this.color = null;
+      this.color = '#f44336';
+      console.log('setting color =>', JSON.stringify(this.color));
     }, 5000);
   },
 };

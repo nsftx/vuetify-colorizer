@@ -18,11 +18,16 @@
 
 <script>
 import {
+  clone,
   each,
   find,
   isNil,
+  isEmpty,
+  isObject,
   sortBy,
+  startsWith,
 } from 'lodash';
+
 import materialColors from 'vuetify/es5/util/colors';
 import { toKebabCase } from '../utility';
 
@@ -30,7 +35,7 @@ export default {
   name: 'VColorPaletteMaterial',
   props: {
     value: {
-      type: String,
+      type: [Object, String],
     },
   },
   data() {
@@ -91,13 +96,20 @@ export default {
       this.sendColorChange();
     },
     setColorFromInput() {
-      if (isNil(this.value)) {
+      if (isNil(this.value) || isEmpty(this.value)) {
         this.color = null;
+      } else if (isObject(this.value)) {
+        this.color = clone(this.value);
       } else {
-        this.color = find(this.colors, { name: this.value });
-      }
+        const isHex = startsWith(this.value, '#');
+        if (isHex) {
+          this.color = find(this.colors, { value: this.value });
+        } else {
+          this.color = find(this.colors, { name: this.value });
+        }
 
-      this.sendColorChange();
+        this.sendColorChange();
+      }
     },
     setColors() {
       const colors = [];
@@ -151,12 +163,7 @@ export default {
       this.colorGroups = colorGroups;
     },
     sendColorChange() {
-      if (this.color) {
-        this.$emit('input', {
-          name: this.color.name,
-          value: this.color.value,
-        });
-      }
+      this.$emit('input', this.color);
     },
   },
   mounted() {

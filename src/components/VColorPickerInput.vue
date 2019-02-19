@@ -14,8 +14,9 @@
                     @input="clearColor">
       </v-text-field>
       <VColorPicker :hide-tabs="hideTabs"
-                    :value="colorName"
-                    @change="setColor">
+                    :value="value"
+                    :return-type="returnType"
+                    @input="setColor">
       </VColorPicker>
     </v-menu>
     <div class="color-box-preview"
@@ -28,6 +29,13 @@
 </template>
 
 <script>
+import {
+  isString,
+  isObject,
+  isNil,
+  startsWith,
+} from 'lodash';
+
 import VColorPicker from './VColorPicker';
 
 export default {
@@ -45,7 +53,7 @@ export default {
       default: 'Color',
     },
     value: {
-      type: String,
+      type: [Object, String],
     },
     returnType: {
       type: String,
@@ -64,7 +72,7 @@ export default {
   },
   computed: {
     colorName() {
-      return this.color ? this.color.name : this.value;
+      return isObject(this.color) && !isNil(this.color) ? this.color.name : null;
     },
     colorStyle() {
       return {
@@ -81,13 +89,25 @@ export default {
       return null;
     },
     setChange() {
-      this.$emit('input', this.color ? this.color.name : null);
-      this.$emit('change', this.returnType === 'color' ? this.color : this.getColorType());
+      const value = this.returnType === 'color' ? this.color : this.getColorType();
+
+      this.$emit('change', value);
     },
-    setColor(color) {
-      if (this.color && color) {
-        Object.assign(this.color, color);
+    setColor(value) {
+      if (isObject(value)) {
+        this.color = value;
       } else {
+        let color;
+        if (startsWith(value, '#')) {
+          color = {
+            value,
+          };
+        } else {
+          color = {
+            name: value,
+          };
+        }
+
         this.color = color;
       }
 
@@ -105,10 +125,16 @@ export default {
   watch: {
     value: {
       handler(value) {
-        if (typeof value === 'string') {
-          this.setColor({
-            name: value,
-          });
+        if (isString(value)) {
+          if (startsWith(value, '#')) {
+            this.setColor({
+              value,
+            });
+          } else {
+            this.setColor({
+              name: value,
+            });
+          }
         } else {
           this.setColor(value);
         }
