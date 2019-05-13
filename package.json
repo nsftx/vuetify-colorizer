@@ -14,7 +14,7 @@
   "author": "Chameleon Team <chameleon@nsoft.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chmjs/vuetify-colorizer"
+    "url": "https://github.com/nsftx/vuetify-colorizer"
   },
   "main": "dist/vuetify-colorizer.umd.min.js",
   "dependencies": {

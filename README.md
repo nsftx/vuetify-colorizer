@@ -1,8 +1,8 @@
 [![npm](https://img.shields.io/npm/v/@nsoft/vuetify-colorizer.svg)](https://www.npmjs.com/package/@nsoft/vuetify-colorizer) 
-[![Greenkeeper badge](https://badges.greenkeeper.io/chmjs/vuetify-colorizer.svg)](https://greenkeeper.io/) 
-[![Build Status](https://travis-ci.org/chmjs/vuetify-colorizer.svg?branch=master)](https://travis-ci.org/chmjs/vuetify-colorizer) 
-[![codebeat badge](https://codebeat.co/badges/690f689b-87eb-42f4-a656-cc3400ac3c0d)](https://codebeat.co/projects/github-com-chmjs-vuetify-colorizer-master)
-[![codecov](https://codecov.io/gh/chmjs/vuetify-colorizer/branch/master/graph/badge.svg)](https://codecov.io/gh/chmjs/vuetify-colorizer)
+[![Greenkeeper badge](https://badges.greenkeeper.io/nsftx/vuetify-colorizer.svg)](https://greenkeeper.io/) 
+[![Build Status](https://travis-ci.org/nsftx/vuetify-colorizer.svg?branch=master)](https://travis-ci.org/nsftx/vuetify-colorizer) 
+[![codebeat badge](https://codebeat.co/badges/690f689b-87eb-42f4-a656-cc3400ac3c0d)](https://codebeat.co/projects/github-com-nsftx-vuetify-colorizer-master)
+[![codecov](https://codecov.io/gh/nsftx/vuetify-colorizer/branch/master/graph/badge.svg)](https://codecov.io/gh/nsftx/vuetify-colorizer)
 
 # vuetify-colorizer
 
