@@ -3,15 +3,16 @@
     <v-menu full-width
             max-width="304px"
             :return-value="color"
-            v-model="visible">
+            v-model="visible"
+            >
       <v-text-field readonly
-                    clearable
+                    outline
+                    align-center
                     slot="activator"
                     color="primary"
                     :value="colorName"
-                    :label="label"
                     :disabled="disabled"
-                    @input="clearColor">
+                    ><template v-slot:label><p>Color</p><v-icon>info</v-icon></template>
       </v-text-field>
       <VColorPicker :hide-tabs="hideTabs"
                     :value="value"
@@ -37,6 +38,7 @@ import {
 } from 'lodash';
 
 import VColorPicker from './VColorPicker';
+import { stat } from 'fs';
 
 export default {
   name: 'VColorPickerInput',
@@ -47,10 +49,6 @@ export default {
     hideTabs: {
       type: Boolean,
       default: false,
-    },
-    label: {
-      type: String,
-      default: 'Color',
     },
     value: {
       type: [Object, String],
@@ -147,12 +145,39 @@ export default {
 
 <style lang="stylus">
 .colorizer-picker-input {
-  position: relative;
-
+  .v-input {
+    &.v-text-field--outline {
+      .v-input__slot {
+        border: 1px solid rgba(0,0,0,0.12)!important;
+      }
+    }
+  }
+  .v-input__slot{
+    margin-top:50px;
+    min-height: 40px !important;
+    height: 40px;
+  }
+  .v-label{
+    transition: none !important;
+    position:relative;
+    top: 10px !important;
+  }
+  .v-label--active{
+            -webkit-transform: translateY(-32px) translateX(-12px) scale(1);
+            transform: translateY(-32px) translateX(-12px) scale(1) !important;
+            font-size: 14px !important;
+            color: grey !important;
+          }
+  .v-input input{
+      max-height: 40px;
+    }
+    .v-text-field--outline input{
+        margin-top: 0px !important;
+      }
   .color-box-preview {
     position: absolute;
-    right: 32px;
-    top: 22px;
+    right: 7px;
+    top: 60px;
     width: 20px;
     height: 20px;
     cursor: pointer;
