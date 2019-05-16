@@ -7,12 +7,25 @@
             >
       <v-text-field readonly
                     outline
+                    placeholder="Select color"
                     align-center
                     slot="activator"
                     color="primary"
                     :value="colorName"
                     :disabled="disabled"
-                    ><template v-slot:label><p>Color</p><v-icon>info</v-icon></template>
+                    >
+        <template v-slot:label>
+          <div>Color 
+            <v-tooltip slot="append" top class="help-tooltip">
+            <template v-slot:activator="{ on }">
+              <v-btn icon v-on="on">
+                <v-icon class="help-icon">info</v-icon>
+              </v-btn>
+            </template>
+            <span>Help tooltip</span>
+          </v-tooltip>
+          </div>
+        </template>
       </v-text-field>
       <VColorPicker :hide-tabs="hideTabs"
                     :value="value"
@@ -144,7 +157,26 @@ export default {
 </script>
 
 <style lang="stylus">
+.v-tooltip__content{
+  top:0px !important;
+}
 .colorizer-picker-input {
+  .v-btn--icon{
+    height: 14px;
+    width: 14px;
+    margin: 0 !important;
+    color:grey;
+  }
+ .v-btn--icon{
+      pointer-events: all;
+   }
+   
+  .help-wrapper{
+    display:flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+  }
   .v-input {
     &.v-text-field--outline {
       .v-input__slot {
@@ -158,13 +190,18 @@ export default {
     height: 40px;
   }
   .v-label{
-    transition: none !important;
+    top: -22px;
+    left: -12px !important;
+    }
+  .v-label, .help-icon{
     position:relative;
-    top: 10px !important;
+  }
+  .help-icon{
+      font-size: 14px;
   }
   .v-label--active{
-            -webkit-transform: translateY(-32px) translateX(-12px) scale(1);
-            transform: translateY(-32px) translateX(-12px) scale(1) !important;
+            -webkit-transform: none;
+            transform: none !important;
             font-size: 14px !important;
             color: grey !important;
           }
