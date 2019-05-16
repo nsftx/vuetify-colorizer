@@ -15,7 +15,7 @@
                     :disabled="disabled"
                     >
         <template v-slot:label>
-          <div>Color 
+          <div>Color
             <v-tooltip slot="append" top class="help-tooltip">
             <template v-slot:activator="{ on }">
               <v-btn icon v-on="on">
@@ -51,7 +51,7 @@ import {
 } from 'lodash';
 
 import VColorPicker from './VColorPicker';
-import { stat } from 'fs';
+
 
 export default {
   name: 'VColorPickerInput',
@@ -168,9 +168,8 @@ export default {
     color:grey;
   }
  .v-btn--icon{
-      pointer-events: all;
-   }
-   
+    pointer-events: all;
+  }
   .help-wrapper{
     display:flex;
     flex-direction: row;
