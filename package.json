@@ -1,6 +1,6 @@
 {
   "name": "@nsoft/vuetify-colorizer",
-  "version": "1.0.15",
+  "version": "1.0.15-beta.1",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve --open",
@@ -23,22 +23,22 @@
     "vuetify": "^1.4.3"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.3.0",
-    "@vue/cli-plugin-eslint": "^3.3.0",
-    "@vue/cli-plugin-unit-jest": "^3.3.0",
-    "@vue/cli-service": "^3.3.0",
+    "@vue/cli-plugin-babel": "^3.7.0",
+    "@vue/cli-plugin-eslint": "^3.7.0",
+    "@vue/cli-plugin-unit-jest": "^3.7.0",
+    "@vue/cli-service": "^3.7.0",
     "@vue/eslint-config-airbnb": "^4.0.0",
     "@vue/test-utils": "^1.0.0-beta.29",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
     "babel-plugin-lodash": "^3.3.4",
-    "codecov": "^3.2.0",
-    "eslint-plugin-jest": "^22.3.0",
-    "eslint-plugin-vue": "^5.0.0",
+    "codecov": "^3.5.0",
+    "eslint-plugin-jest": "^22.5.1",
+    "eslint-plugin-vue": "^5.2.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
-    "vue-template-compiler": "^2.5.21",
-    "webpack-bundle-analyzer": "^3.0.4"
+    "vue-template-compiler": "^2.6.10",
+    "webpack-bundle-analyzer": "^3.3.2"
   }
 }
