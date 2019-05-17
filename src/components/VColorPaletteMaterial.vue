@@ -10,7 +10,7 @@
            :title="color.name"
            @click="setColor(color)"
            v-for="color in colorGroup.colors">
-        <span v-if="isSelectedColor(color)">&#9679;</span>
+        <div v-if="isSelectedColor(color)" class="selected-color-outline"></div>
       </div>
     </div>
   </div>
@@ -30,6 +30,7 @@ import {
 
 import materialColors from 'vuetify/es5/util/colors';
 import { toKebabCase } from '../utility';
+import { isNull } from 'util';
 
 export default {
   name: 'VColorPaletteMaterial',
@@ -123,11 +124,11 @@ export default {
           let isBase = false;
           let isLight = false;
           if (name.startsWith('accent')) {
-            priority = 3;
+            priority = 4;
             isGroupEnd = name.endsWith('4');
             isLight = this.colorWeight(name) <= 2;
           } else if (name.startsWith('darken')) {
-            priority = 4;
+            priority = 3;
             isGroupEnd = name.endsWith('4');
           } else if (name.startsWith('lighten')) {
             priority = 2;
@@ -174,6 +175,14 @@ export default {
 </script>
 
 <style lang="stylus">
+.selected-color-outline{
+  height: 20px !important;
+  width: 20px !important;
+  border: 2px solid #2d3038;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
 .v-menu__content{
   position: absolute !important;
   top:90px !important;
