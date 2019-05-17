@@ -1,7 +1,7 @@
 <template>
   <div class="colorizer-picker-input">
     <v-menu full-width
-            max-width="304px"
+            max-width="416px"
             :return-value="color"
             v-model="visible"
             >
@@ -160,6 +160,7 @@ export default {
 .v-tooltip__content{
   top:0px !important;
 }
+
 .colorizer-picker-input {
   .v-btn--icon{
     height: 14px;
@@ -170,6 +171,7 @@ export default {
  .v-btn--icon{
     pointer-events: all;
   }
+
   .help-wrapper{
     display:flex;
     flex-direction: row;

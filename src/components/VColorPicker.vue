@@ -1,5 +1,6 @@
 <template>
   <v-tabs dark
+          class="color-tabs-header"
           show-arrows
           color="primary"
           slider-color="secondary"
@@ -79,5 +80,10 @@ export default {
 <style lang="stylus">
 .v-tabs.hidden-bars .v-tabs__bar {
   display: none;
+}
+.color-tabs-header{
+  .v-tabs__bar{
+    display: none !important;
+  }
 }
 </style>

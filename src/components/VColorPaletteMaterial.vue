@@ -123,14 +123,14 @@ export default {
           let isBase = false;
           let isLight = false;
           if (name.startsWith('accent')) {
-            priority = 2;
+            priority = 3;
             isGroupEnd = name.endsWith('4');
             isLight = this.colorWeight(name) <= 2;
           } else if (name.startsWith('darken')) {
-            priority = 3;
+            priority = 4;
             isGroupEnd = name.endsWith('4');
           } else if (name.startsWith('lighten')) {
-            priority = 4;
+            priority = 2;
             isGroupEnd = name.endsWith('5');
             isLight = this.colorWeight(name) >= 3;
           } else {
@@ -155,7 +155,7 @@ export default {
 
         colorGroups.push({
           name: groupName,
-          colors: sortBy(colorGroupColors, ['priority', 'name']),
+          colors: sortBy(colorGroupColors, ['priority']),
         });
       });
 
@@ -174,14 +174,33 @@ export default {
 </script>
 
 <style lang="stylus">
-.colorizer-palette-material {
-  $width = 304px;
-  $height = 419px;
-  $colorSize = 20px;
-  width: $width;
-  height: $height;
-  background-color: whitesmoke;
+.v-menu__content{
+  position: absolute !important;
+  top:90px !important;
+  right:0% !important;
+  left: auto !important;
 
+}
+.color-box:first-child{
+  margin-bottom: 8px !important;
+}
+
+.colorizer-palette-material {
+  background-color: white !important;
+  margin: 0px !important;
+  padding: 8px;
+  display:flex;
+  flex-direction: row;
+  background-color: whitesmoke;
+.color-box-base {
+  width: 20px !important;
+}
+.color-group{
+    width: 20px !important;
+    height: 100% !important;
+    display: flex;
+    flex-direction: column;
+}
   .color-group {
     float: left;
     width: $width;
@@ -207,10 +226,6 @@ export default {
 
     &-light {
       color: black;
-    }
-
-    &-end {
-      margin-right: 1px;
     }
   }
 }
