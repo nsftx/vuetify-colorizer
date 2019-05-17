@@ -192,7 +192,7 @@ export default {
   }
   .v-label{
     top: -22px;
-    left: -12px !important;
+    left: 0px !important;
     }
   .v-label, .help-icon{
     position:relative;

@@ -183,9 +183,6 @@ export default {
   -webkit-box-sizing: border-box;
 }
 .v-menu__content{
-  position: absolute !important;
-  top:90px !important;
-  right:0% !important;
   left: auto !important;
 
 }
