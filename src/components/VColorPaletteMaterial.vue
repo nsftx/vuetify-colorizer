@@ -30,7 +30,6 @@ import {
 
 import materialColors from 'vuetify/es5/util/colors';
 import { toKebabCase } from '../utility';
-import { isNull } from 'util';
 
 export default {
   name: 'VColorPaletteMaterial',
