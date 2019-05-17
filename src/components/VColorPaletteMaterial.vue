@@ -182,10 +182,6 @@ export default {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
 }
-.v-menu__content{
-  left: auto !important;
-
-}
 .color-box:first-child{
   margin-bottom: 8px !important;
 }
