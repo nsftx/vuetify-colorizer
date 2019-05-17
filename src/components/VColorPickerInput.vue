@@ -19,7 +19,7 @@
             <v-tooltip slot="append" top class="help-tooltip">
             <template v-slot:activator="{ on }">
               <v-btn icon v-on="on">
-                <v-icon class="help-icon">info</v-icon>
+                <v-icon class="help-icon material-icons-outlined">info</v-icon>
               </v-btn>
             </template>
             <span>Help tooltip</span>
@@ -186,7 +186,7 @@ export default {
     }
   }
   .v-input__slot{
-    margin-top:50px;
+    margin-top:36px;
     min-height: 40px !important;
     height: 40px;
   }
@@ -215,7 +215,7 @@ export default {
   .color-box-preview {
     position: absolute;
     right: 7px;
-    top: 60px;
+    top: 46px;
     width: 20px;
     height: 20px;
     cursor: pointer;
