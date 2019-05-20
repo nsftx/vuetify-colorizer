@@ -211,6 +211,7 @@ export default {
         margin-top: 0px !important;
       }
   .color-box-preview {
+    border-radius: 4px;
     position: absolute;
     right: 7px;
     top: 10px;
