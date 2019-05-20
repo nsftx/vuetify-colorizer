@@ -157,10 +157,6 @@ export default {
 </script>
 
 <style lang="stylus">
-.v-tooltip__content{
-  top:0px !important;
-}
-
 .colorizer-picker-input {
   .v-btn--icon{
     height: 14px;
