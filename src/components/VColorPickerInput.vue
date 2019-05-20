@@ -3,8 +3,7 @@
     <v-menu full-width
             max-width="416px"
             :return-value="color"
-            v-model="visible"
-            >
+            v-model="visible">
       <v-text-field readonly
                     outline
                     hide-details
@@ -13,10 +12,9 @@
                     slot="activator"
                     color="primary"
                     :value="colorName"
-                    :disabled="disabled"
-                    >
+                    :disabled="disabled">
         <template v-slot:label>
-          <div>Color
+          <div>{{label}}
             <v-tooltip slot="append" top class="help-tooltip">
             <template v-slot:activator="{ on }">
               <v-btn icon v-on="on">
@@ -63,6 +61,10 @@ export default {
     hideTabs: {
       type: Boolean,
       default: false,
+    },
+    label: {
+      type: String,
+      default: 'Color',
     },
     value: {
       type: [Object, String],
