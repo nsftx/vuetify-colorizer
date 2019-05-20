@@ -196,7 +196,8 @@ export default {
     position:relative;
   }
   .help-icon{
-      font-size: 14px;
+    color: #7a7a7a !important;
+    font-size: 14px;
   }
   .v-label--active{
             -webkit-transform: none;
