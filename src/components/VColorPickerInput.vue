@@ -7,6 +7,7 @@
             >
       <v-text-field readonly
                     outline
+                    hide-details
                     placeholder="Select color"
                     align-center
                     slot="activator"
@@ -182,7 +183,6 @@ export default {
     }
   }
   .v-input__slot{
-    margin-top:36px;
     min-height: 40px !important;
     height: 40px;
   }
@@ -211,7 +211,7 @@ export default {
   .color-box-preview {
     position: absolute;
     right: 7px;
-    top: 46px;
+    top: 10px;
     width: 20px;
     height: 20px;
     cursor: pointer;
