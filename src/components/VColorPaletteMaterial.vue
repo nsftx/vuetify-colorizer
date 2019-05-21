@@ -1,18 +1,30 @@
 <template>
-  <div class="colorizer-palette-material">
-    <div class="color-group"
-         :key="colorGroupIndex"
-         v-for="(colorGroup, colorGroupIndex) in colorGroups">
-      <div class="color-box"
-           :key="color.name"
-           :class="colorClass(color)"
-           :style="colorStyle(color)"
-           :title="color.name"
-           @click="setColor(color)"
-           v-for="color in colorGroup.colors">
-        <div v-if="isSelectedColor(color)" class="selected-color-outline"></div>
+  <div class="colorizer-palette-material" column>
+    <div class="color-group-wrap">
+      <div class="color-group"
+          :key="colorGroupIndex"
+          v-for="(colorGroup, colorGroupIndex) in colorGroups">
+        <div class="color-box"
+            :key="color.name"
+            :class="colorClass(color)"
+            :style="colorStyle(color)"
+            :title="color.name"
+            @click="setColor(color)"
+            v-for="color in colorGroup.colors">
+          <div v-if="isSelectedColor(color)" class="selected-color-outline"></div>
+        </div>
       </div>
     </div>
+    <div @click.stop class="color-palette-hex">
+      <v-text-field
+        readonly
+        v-model="hexNum"
+        class="text-field-hex"
+        ref="hexField"
+        placeholder="Hex #"
+        outline>
+      </v-text-field>
+      </div>
   </div>
 </template>
 
@@ -40,6 +52,7 @@ export default {
   },
   data() {
     return {
+      hexNum: null,
       materialColors,
       color: null,
       colors: null,
@@ -92,7 +105,7 @@ export default {
       return this.color && color.name === this.color.name;
     },
     setColor(color) {
-      this.color = color;
+      this.hexNum = color.value;
       this.sendColorChange();
     },
     setColorFromInput() {
@@ -148,7 +161,6 @@ export default {
             isGroupEnd,
             isLight,
           };
-
           colors.push(color);
           colorGroupColors.push(color);
         });
@@ -174,6 +186,35 @@ export default {
 </script>
 
 <style lang="stylus">
+.color-palette-hex{
+  height: 50px;
+  width: 200px;
+  .v-text-field__details{
+    height: 0px !important;
+  }
+  .v-input__slot{
+    font-size: 14px;
+    color: rgba(34, 34, 34, 0.6) !important;
+    margin-top: 16px;
+    width: 200px;
+    min-height: 24px !important;
+    margin-bottom: 0px !important;
+    height: 24px;
+    border: 1px solid #dedede !important;
+    input[placeholder="Hex #"] {
+      -webkit-user-select: all;
+  -moz-user-select: all;
+  -ms-user-select: all;
+  user-select: all;
+    }
+  }
+  .v-text-field--outline input{
+    margin-top: 0px !important;
+  }
+  .text-field-hex{
+    padding: 0px !important;
+  }
+}
 .selected-color-outline{
   height: 20px !important;
   width: 20px !important;
@@ -191,10 +232,15 @@ export default {
   margin: 0px !important;
   padding: 8px;
   display:flex;
-  flex-direction: row;
+  flex-direction: column;
   background-color: whitesmoke;
 .color-box-base {
   width: 20px !important;
+}
+.color-group-wrap{
+  width: 355;
+  display:flex;
+  flex-direction: row;
 }
 .color-group{
     width: 20px !important;
