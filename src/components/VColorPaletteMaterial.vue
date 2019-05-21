@@ -17,7 +17,6 @@
     </div>
     <div @click.stop class="color-palette-hex">
       <v-text-field
-        readonly
         v-model="hexNum"
         class="text-field-hex"
         ref="hexField"
@@ -106,6 +105,7 @@ export default {
     },
     setColor(color) {
       this.hexNum = color.value;
+      this.color = color;
       this.sendColorChange();
     },
     setColorFromInput() {
