@@ -18,6 +18,7 @@
     <div @click.stop class="color-palette-hex">
       <v-text-field
         v-model="hexNum"
+        readonly
         class="text-field-hex"
         ref="hexField"
         placeholder="Hex #"
