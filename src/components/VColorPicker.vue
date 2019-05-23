@@ -81,9 +81,10 @@ export default {
 .v-tabs.hidden-bars .v-tabs__bar {
   display: none;
 }
-.color-tabs-header{
-  .v-tabs__bar{
+.color-tabs-header {
+  .v-tabs__bar {
     display: none !important;
   }
 }
+
 </style>

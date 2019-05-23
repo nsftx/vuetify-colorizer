@@ -161,56 +161,67 @@ export default {
 
 <style lang="stylus">
 .colorizer-picker-input {
-  .v-btn--icon{
+  .v-btn--icon {
     height: 14px;
     width: 14px;
     margin: 0 !important;
-    color:grey;
+    color: grey;
   }
- .v-btn--icon{
+
+  .v-btn--icon {
     pointer-events: all;
   }
 
-  .help-wrapper{
-    display:flex;
+  .help-wrapper {
+    display: flex;
     flex-direction: row;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
   }
+
   .v-input {
     &.v-text-field--outline {
       .v-input__slot {
-        border: 1px solid rgba(0,0,0,0.12)!important;
+        border: 1px solid rgba(0, 0, 0, 0.12) !important;
       }
     }
   }
-  .v-input__slot{
+
+  .v-input__slot {
     min-height: 40px !important;
     height: 40px;
   }
-  .v-label{
+
+  .v-label {
     top: -22px;
     left: 0px !important;
-    }
-  .v-label, .help-icon{
-    position:relative;
   }
-  .help-icon{
+
+  .v-label,
+  .help-icon {
+    position: relative;
+  }
+
+  .help-icon {
     color: #7a7a7a !important;
     font-size: 14px;
   }
-  .v-label--active{
-            -webkit-transform: none;
-            transform: none !important;
-            font-size: 14px !important;
-            color: grey !important;
-          }
-  .v-input input{
-      max-height: 40px;
-    }
-    .v-text-field--outline input{
-        margin-top: 0px !important;
-      }
+
+  .v-label--active {
+    -webkit-transform: none;
+    transform: none !important;
+    font-size: 14px !important;
+    color: grey !important;
+  }
+
+  .v-input input {
+    max-height: 40px;
+  }
+
+  .v-text-field--outline input {
+    margin-top: 0px !important;
+  }
+
   .color-box-preview {
     border-radius: 4px;
     position: absolute;
@@ -221,4 +232,5 @@ export default {
     cursor: pointer;
   }
 }
+
 </style>

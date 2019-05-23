@@ -186,13 +186,15 @@ export default {
 </script>
 
 <style lang="stylus">
-.color-palette-hex{
+.color-palette-hex {
   height: 50px;
   width: 200px;
-  .v-text-field__details{
+
+  .v-text-field__details {
     height: 0px !important;
   }
-  .v-input__slot{
+
+  .v-input__slot {
     font-size: 14px;
     color: rgba(34, 34, 34, 0.6) !important;
     margin-top: 16px;
@@ -201,21 +203,25 @@ export default {
     margin-bottom: 0px !important;
     height: 24px;
     border: 1px solid #dedede !important;
+
     input[placeholder="Hex #"] {
       -webkit-user-select: all;
-  -moz-user-select: all;
-  -ms-user-select: all;
-  user-select: all;
+      -moz-user-select: all;
+      -ms-user-select: all;
+      user-select: all;
     }
   }
-  .v-text-field--outline input{
+
+  .v-text-field--outline input {
     margin-top: 0px !important;
   }
-  .text-field-hex{
+
+  .text-field-hex {
     padding: 0px !important;
   }
 }
-.selected-color-outline{
+
+.selected-color-outline {
   height: 20px !important;
   width: 20px !important;
   border: 2px solid #2d3038;
@@ -223,7 +229,8 @@ export default {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
 }
-.color-box:first-child{
+
+.color-box:first-child {
   margin-bottom: 8px !important;
 }
 
@@ -231,23 +238,27 @@ export default {
   background-color: white !important;
   margin: 0px !important;
   padding: 8px;
-  display:flex;
+  display: flex;
   flex-direction: column;
   background-color: whitesmoke;
-.color-box-base {
-  width: 20px !important;
-}
-.color-group-wrap{
-  width: 355;
-  display:flex;
-  flex-direction: row;
-}
-.color-group{
+
+  .color-box-base {
+    width: 20px !important;
+  }
+
+  .color-group-wrap {
+    width: 355;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .color-group {
     width: 20px !important;
     height: 100% !important;
     display: flex;
     flex-direction: column;
-}
+  }
+
   .color-group {
     float: left;
     width: $width;
@@ -276,4 +287,5 @@ export default {
     }
   }
 }
+
 </style>
