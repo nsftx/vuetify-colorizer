@@ -165,7 +165,7 @@ export default {
   .v-input__append-inner {
     margin-top: 0px !important;
     position: relative;
-    right: 1em;
+    right: 0px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -236,7 +236,7 @@ export default {
   .color-box-preview {
     border-radius: 4px;
     position: absolute;
-    right: 7px;
+    right: 3em;
     top: 10px;
     width: 20px;
     height: 20px;
