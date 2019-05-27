@@ -7,6 +7,8 @@
       <v-text-field readonly
                     outline
                     hide-details
+                    clearable
+                    @click:clear="clearColor"
                     placeholder="Select color"
                     align-center
                     slot="activator"
@@ -99,7 +101,6 @@ export default {
       if (this.color) {
         return this.color[this.returnType];
       }
-
       return null;
     },
     setChange() {
@@ -161,6 +162,16 @@ export default {
 
 <style lang="stylus">
 .colorizer-picker-input {
+  .v-input__append-inner {
+    margin-top: 0px !important;
+    position: relative;
+    right: 1em;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   .v-btn--icon {
     height: 14px;
     width: 14px;
