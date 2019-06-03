@@ -1,18 +1,30 @@
 <template>
-  <div class="colorizer-palette-material">
-    <div class="color-group"
-         :key="colorGroupIndex"
-         v-for="(colorGroup, colorGroupIndex) in colorGroups">
-      <div class="color-box"
-           :key="color.name"
-           :class="colorClass(color)"
-           :style="colorStyle(color)"
-           :title="color.name"
-           @click="setColor(color)"
-           v-for="color in colorGroup.colors">
-        <span v-if="isSelectedColor(color)">&#9679;</span>
+  <div class="colorizer-palette-material" column>
+    <div class="color-group-wrap">
+      <div class="color-group"
+          :key="colorGroupIndex"
+          v-for="(colorGroup, colorGroupIndex) in colorGroups">
+        <div class="color-box"
+            :key="color.name"
+            :class="colorClass(color)"
+            :style="colorStyle(color)"
+            :title="color.name"
+            @click="setColor(color)"
+            v-for="color in colorGroup.colors">
+          <div v-if="isSelectedColor(color)" class="selected-color-outline"></div>
+        </div>
       </div>
     </div>
+    <div @click.stop class="color-palette-hex">
+      <v-text-field
+        v-model="hexNum"
+        readonly
+        class="text-field-hex"
+        ref="hexField"
+        placeholder="Hex #"
+        outline>
+      </v-text-field>
+      </div>
   </div>
 </template>
 
@@ -40,6 +52,7 @@ export default {
   },
   data() {
     return {
+      hexNum: null,
       materialColors,
       color: null,
       colors: null,
@@ -92,6 +105,7 @@ export default {
       return this.color && color.name === this.color.name;
     },
     setColor(color) {
+      this.hexNum = color.value;
       this.color = color;
       this.sendColorChange();
     },
@@ -123,14 +137,14 @@ export default {
           let isBase = false;
           let isLight = false;
           if (name.startsWith('accent')) {
-            priority = 2;
+            priority = 4;
             isGroupEnd = name.endsWith('4');
             isLight = this.colorWeight(name) <= 2;
           } else if (name.startsWith('darken')) {
             priority = 3;
             isGroupEnd = name.endsWith('4');
           } else if (name.startsWith('lighten')) {
-            priority = 4;
+            priority = 2;
             isGroupEnd = name.endsWith('5');
             isLight = this.colorWeight(name) >= 3;
           } else {
@@ -148,14 +162,13 @@ export default {
             isGroupEnd,
             isLight,
           };
-
           colors.push(color);
           colorGroupColors.push(color);
         });
 
         colorGroups.push({
           name: groupName,
-          colors: sortBy(colorGroupColors, ['priority', 'name']),
+          colors: sortBy(colorGroupColors, ['priority']),
         });
       });
 
@@ -174,13 +187,78 @@ export default {
 </script>
 
 <style lang="stylus">
+.color-palette-hex {
+  height: 50px;
+  width: 200px;
+
+  .v-text-field__details {
+    height: 0px !important;
+  }
+
+  .v-input__slot {
+    font-size: 14px;
+    color: rgba(34, 34, 34, 0.6) !important;
+    margin-top: 16px;
+    width: 200px;
+    min-height: 24px !important;
+    margin-bottom: 0px !important;
+    height: 24px;
+    border: 1px solid #dedede !important;
+
+    input[placeholder="Hex #"] {
+      -webkit-user-select: all;
+      -moz-user-select: all;
+      -ms-user-select: all;
+      user-select: all;
+    }
+  }
+
+  .v-text-field--outline input {
+    margin-top: 0px !important;
+  }
+
+  .text-field-hex {
+    padding: 0px !important;
+  }
+}
+
+.selected-color-outline {
+  height: 20px !important;
+  width: 20px !important;
+  border: 2px solid #2d3038;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.color-box:first-child {
+  margin-bottom: 8px !important;
+}
+
 .colorizer-palette-material {
-  $width = 304px;
-  $height = 419px;
-  $colorSize = 20px;
-  width: $width;
-  height: $height;
+  background-color: white !important;
+  margin: 0px !important;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
   background-color: whitesmoke;
+
+  .color-box-base {
+    width: 20px !important;
+  }
+
+  .color-group-wrap {
+    width: 355;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .color-group {
+    width: 20px !important;
+    height: 100% !important;
+    display: flex;
+    flex-direction: column;
+  }
 
   .color-group {
     float: left;
@@ -208,10 +286,7 @@ export default {
     &-light {
       color: black;
     }
-
-    &-end {
-      margin-right: 1px;
-    }
   }
 }
+
 </style>

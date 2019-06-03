@@ -1,17 +1,32 @@
 <template>
   <div class="colorizer-picker-input">
     <v-menu full-width
-            max-width="304px"
+            max-width="416px"
             :return-value="color"
             v-model="visible">
       <v-text-field readonly
+                    outline
+                    hide-details
                     clearable
+                    @click:clear="clearColor"
+                    placeholder="Select color"
+                    align-center
                     slot="activator"
                     color="primary"
                     :value="colorName"
-                    :label="label"
-                    :disabled="disabled"
-                    @input="clearColor">
+                    :disabled="disabled">
+        <template v-slot:label>
+          <div>{{label}}
+            <v-tooltip slot="append" top class="help-tooltip">
+            <template v-slot:activator="{ on }">
+              <v-btn icon v-on="on" @click.stop>
+                <v-icon class="help-icon material-icons-outlined">info</v-icon>
+              </v-btn>
+            </template>
+            <span>Help tooltip</span>
+          </v-tooltip>
+          </div>
+        </template>
       </v-text-field>
       <VColorPicker :hide-tabs="hideTabs"
                     :value="value"
@@ -37,6 +52,7 @@ import {
 } from 'lodash';
 
 import VColorPicker from './VColorPicker';
+
 
 export default {
   name: 'VColorPickerInput',
@@ -85,7 +101,6 @@ export default {
       if (this.color) {
         return this.color[this.returnType];
       }
-
       return null;
     },
     setChange() {
@@ -147,15 +162,86 @@ export default {
 
 <style lang="stylus">
 .colorizer-picker-input {
-  position: relative;
+  .v-input__append-inner {
+    margin-top: 0px !important;
+    position: relative;
+    right: 0px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .v-btn--icon {
+    height: 14px;
+    width: 14px;
+    margin: 0 !important;
+    color: grey;
+  }
+
+  .v-btn--icon {
+    pointer-events: all;
+  }
+
+  .help-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .v-input {
+    &.v-text-field--outline {
+      .v-input__slot {
+        border: 1px solid rgba(0, 0, 0, 0.12) !important;
+      }
+    }
+  }
+
+  .v-input__slot {
+    min-height: 40px !important;
+    height: 40px;
+  }
+
+  .v-label {
+    top: -22px;
+    left: 0px !important;
+  }
+
+  .v-label,
+  .help-icon {
+    position: relative;
+  }
+
+  .help-icon {
+    color: #7a7a7a !important;
+    font-size: 14px;
+  }
+
+  .v-label--active {
+    -webkit-transform: none;
+    transform: none !important;
+    font-size: 14px !important;
+    color: grey !important;
+  }
+
+  .v-input input {
+    max-height: 40px;
+  }
+
+  .v-text-field--outline input {
+    margin-top: 0px !important;
+  }
 
   .color-box-preview {
+    border-radius: 4px;
     position: absolute;
-    right: 32px;
-    top: 22px;
+    right: 3em;
+    top: 10px;
     width: 20px;
     height: 20px;
     cursor: pointer;
   }
 }
+
 </style>
