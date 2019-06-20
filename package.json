@@ -1,26 +1,26 @@
 {
   "name": "@nsoft/vuetify-colorizer",
-  "version": "1.0.15-beta.6",
+  "version": "1.0.17-beta.0",
   "private": false,
-  "scripts": {
-    "serve": "vue-cli-service serve --open",
-    "build": "vue-cli-service build --target lib --name vuetify-colorizer src/index.js",
-    "lint": "vue-cli-service lint --no-fix",
-    "test": "npm run lint && vue-cli-service test:unit",
-    "coverage": "npm test && codecov",
-    "prepublish": "npm run build"
-  },
-  "license": "MIT",
   "author": "Chameleon Team <chameleon@nsoft.com>",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/nsftx/vuetify-colorizer"
+  },
+  "scripts": {
+    "serve": "vue-cli-service serve --open",
+    "build": "vue-cli-service build --target lib --name vuetify-colorizer src/index.js",
+    "test": "npm run lint && vue-cli-service test:unit",
+    "lint": "vue-cli-service lint --no-fix",
+    "coverage": "npm test && codecov",
+    "prepublish": "npm run build"
   },
   "main": "dist/vuetify-colorizer.umd.min.js",
   "dependencies": {
     "lodash": "^4.17.11",
     "vue": "^2.6.10",
-    "vuetify": "^1.5.14"
+    "vuetify": "^2.0.0-beta.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.7.0",
@@ -36,9 +36,11 @@
     "codecov": "^3.5.0",
     "eslint-plugin-jest": "^22.6.4",
     "eslint-plugin-vue": "^5.2.2",
-    "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.2",
+    "sass": "^1.17.4",
+    "sass-loader": "^7.1.0",
+    "vue-cli-plugin-vuetify": "git+https://github.com/vuetifyjs/vue-cli-plugin-vuetify.git#dev",
     "vue-template-compiler": "^2.6.10",
+    "vuetify-loader": "^1.2.2",
     "webpack-bundle-analyzer": "^3.3.2"
   }
 }

@@ -77,7 +77,7 @@ export default {
 };
 </script>
 
-<style lang="stylus">
+<style lang="scss">
 .v-tabs.hidden-bars .v-tabs__bar {
   display: none;
 }

@@ -186,7 +186,7 @@ export default {
 };
 </script>
 
-<style lang="stylus">
+<style lang="scss">
 .color-palette-hex {
   height: 50px;
   width: 200px;
@@ -258,12 +258,7 @@ export default {
     height: 100% !important;
     display: flex;
     flex-direction: column;
-  }
-
-  .color-group {
     float: left;
-    width: $width;
-    height: $colorSize;
     margin-bottom: 1px;
   }
 

@@ -4,30 +4,32 @@
             max-width="416px"
             :return-value="color"
             v-model="visible">
-      <v-text-field readonly
-                    outline
-                    hide-details
-                    clearable
-                    @click:clear="clearColor"
-                    placeholder="Select color"
-                    align-center
-                    slot="activator"
-                    color="primary"
-                    :value="colorName"
-                    :disabled="disabled">
-        <template v-slot:label>
-          <div>{{label}}
-            <v-tooltip slot="append" top class="help-tooltip">
-            <template v-slot:activator="{ on }">
-              <v-btn icon v-on="on" @click.stop>
-                <v-icon class="help-icon material-icons-outlined">info</v-icon>
-              </v-btn>
-            </template>
-            <span>Help tooltip</span>
-          </v-tooltip>
-          </div>
-        </template>
-      </v-text-field>
+      <template v-slot:activator="{ on }">
+        <v-text-field readonly
+                      outline
+                      hide-details
+                      clearable
+                      @click:clear="clearColor"
+                      placeholder="Select color"
+                      align-center
+                      v-on="on"
+                      color="primary"
+                      :value="colorName"
+                      :disabled="disabled">
+          <template v-slot:label>
+            <div>{{label}}
+              <v-tooltip slot="append" top class="help-tooltip">
+              <template v-slot:activator="{ on }">
+                <v-btn icon v-on="on" @click.stop>
+                  <v-icon class="help-icon material-icons-outlined">info</v-icon>
+                </v-btn>
+              </template>
+              <span>Help tooltip</span>
+            </v-tooltip>
+            </div>
+          </template>
+        </v-text-field>
+      </template>
       <VColorPicker :hide-tabs="hideTabs"
                     :value="value"
                     :return-type="returnType"
@@ -160,7 +162,7 @@ export default {
 };
 </script>
 
-<style lang="stylus">
+<style lang="scss">
 .colorizer-picker-input {
   .v-input__append-inner {
     margin-top: 0px !important;
