@@ -162,6 +162,7 @@ export default {
 
 <style lang="stylus">
 .colorizer-picker-input {
+  position: relative;
   .v-input__append-inner {
     margin-top: 0px !important;
     position: relative;

@@ -14,4 +14,8 @@ module.exports = {
     },
     plugins,
   },
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/vuetify-colorizer' // prod
+    : '/', // dev
+
 };

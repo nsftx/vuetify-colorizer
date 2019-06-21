@@ -1,9 +1,18 @@
 <template>
   <v-app id="app">
-    <VColorPickerInput v-model="color"
-                       return-type="value"
-                       @change="showColor">
-    </VColorPickerInput>
+    <v-content>
+      <v-container>
+        <h1>vuetify-colorizer</h1>
+        <p>
+          This is an example of the vuetify-colorizer:
+        </p>
+        <br>
+        <VColorPickerInput v-model="color"
+                           return-type="value"
+                           @change="showColor">
+        </VColorPickerInput>
+      </v-container>
+    </v-content>
   </v-app>
 </template>
 
@@ -35,9 +44,9 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  #app {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 </style>
