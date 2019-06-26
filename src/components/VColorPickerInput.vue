@@ -6,9 +6,10 @@
             v-model="visible">
       <template v-slot:activator="{ on }">
         <v-text-field readonly
-                      outline
+                      outlined
                       hide-details
                       clearable
+                      clear-icon="clear"
                       @click:clear="clearColor"
                       placeholder="Select color"
                       align-center
@@ -164,16 +165,6 @@ export default {
 
 <style lang="scss">
 .colorizer-picker-input {
-  .v-input__append-inner {
-    margin-top: 0px !important;
-    position: relative;
-    right: 0px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
   .v-btn--icon {
     height: 14px;
     width: 14px;
@@ -192,47 +183,18 @@ export default {
     align-items: center;
   }
 
-  .v-input {
-    &.v-text-field--outline {
-      .v-input__slot {
-        border: 1px solid rgba(0, 0, 0, 0.12) !important;
-      }
-    }
-  }
-
   .v-input__slot {
     min-height: 40px !important;
     height: 40px;
   }
-
-  .v-label {
-    top: -22px;
-    left: 0px !important;
-  }
-
-  .v-label,
-  .help-icon {
-    position: relative;
-  }
-
   .help-icon {
     color: #7a7a7a !important;
     font-size: 14px;
   }
 
-  .v-label--active {
-    -webkit-transform: none;
-    transform: none !important;
-    font-size: 14px !important;
-    color: grey !important;
-  }
 
   .v-input input {
     max-height: 40px;
-  }
-
-  .v-text-field--outline input {
-    margin-top: 0px !important;
   }
 
   .color-box-preview {
@@ -245,5 +207,4 @@ export default {
     cursor: pointer;
   }
 }
-
 </style>

@@ -1,6 +1,5 @@
 <template>
-  <v-tabs dark
-          class="color-tabs-header"
+  <v-tabs class="color-tabs-header"
           show-arrows
           color="primary"
           slider-color="secondary"
@@ -82,7 +81,7 @@ export default {
   display: none;
 }
 .color-tabs-header {
-  .v-tabs__bar {
+  .v-tabs-bar {
     display: none !important;
   }
 }

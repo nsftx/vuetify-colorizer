@@ -22,7 +22,7 @@
         class="text-field-hex"
         ref="hexField"
         placeholder="Hex #"
-        outline>
+        outlined>
       </v-text-field>
       </div>
   </div>
@@ -203,9 +203,9 @@ export default {
     min-height: 24px !important;
     margin-bottom: 0px !important;
     height: 24px;
-    border: 1px solid #dedede !important;
 
     input[placeholder="Hex #"] {
+      margin-top: 0px !important;
       -webkit-user-select: all;
       -moz-user-select: all;
       -ms-user-select: all;
@@ -219,6 +219,7 @@ export default {
 
   .text-field-hex {
     padding: 0px !important;
+    color:black !important;
   }
 }
 
