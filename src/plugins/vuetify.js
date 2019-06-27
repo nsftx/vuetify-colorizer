@@ -1,23 +1,7 @@
 import Vue from 'vue';
-import Vuetify, {
-  VBtn,
-  VIcon,
-  VMenu,
-  VTabs,
-  VTextField,
-  VTooltip,
-} from 'vuetify/lib';
+import Vuetify from 'vuetify/lib';
 
-Vue.use(Vuetify, {
-  components: {
-    VBtn,
-    VIcon,
-    VMenu,
-    VTabs,
-    VTextField,
-    VTooltip,
-  },
-});
+Vue.use(Vuetify);
 
 export default new Vuetify({
   icons: {
