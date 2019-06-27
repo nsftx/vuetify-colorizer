@@ -243,6 +243,7 @@ export default {
   display: flex;
   flex-direction: column;
   background-color: whitesmoke;
+  height: 360px;
 
   .color-box-base {
     width: 20px !important;
