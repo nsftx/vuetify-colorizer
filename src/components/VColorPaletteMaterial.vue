@@ -11,7 +11,7 @@
             :title="color.name"
             @click="setColor(color)"
             v-for="color in colorGroup.colors">
-          <div v-if="isSelectedColor(color)" class="selected-color-outline"></div>
+          <div v-if="isSelectedColor(color) && hexColor" class="selected-color-outline"></div>
         </div>
       </div>
     </div>
@@ -49,6 +49,10 @@ export default {
     value: {
       type: [Object, String],
     },
+    hexColor: {
+      type: String,
+      default: null,
+    },
   },
   data() {
     return {
@@ -62,6 +66,9 @@ export default {
   watch: {
     value() {
       this.setColorFromInput();
+    },
+    hexColor() {
+      this.hexNum = this.hexColor;
     },
   },
   methods: {
@@ -105,7 +112,6 @@ export default {
       return this.color && color.name === this.color.name;
     },
     setColor(color) {
-      this.hexNum = color.value;
       this.color = color;
       this.sendColorChange();
     },
@@ -192,7 +198,7 @@ export default {
   width: 200px;
 
   .v-text-field__details {
-    height: 0px !important;
+    display: none !important;
   }
 
   .v-input__slot {

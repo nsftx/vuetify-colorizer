@@ -33,6 +33,7 @@
       </template>
       <VColorPicker :hide-tabs="hideTabs"
                     :value="value"
+                    :hexColor="color ? color.value : ''"
                     :return-type="returnType"
                     @input="setColor">
       </VColorPicker>
@@ -108,7 +109,6 @@ export default {
     },
     setChange() {
       const value = this.returnType === 'color' ? this.color : this.getColorType();
-
       this.$emit('change', value);
     },
     setColor(value) {
@@ -166,8 +166,8 @@ export default {
 <style lang="scss">
 .colorizer-picker-input {
   .v-btn--icon {
-    height: 14px;
-    width: 14px;
+    height: 14px !important;
+    width: 14px !important;
     margin: 0 !important;
     color: grey;
   }

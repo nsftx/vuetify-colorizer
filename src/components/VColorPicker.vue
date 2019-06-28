@@ -14,6 +14,7 @@
                 v-for="palette in palettes">
       <component :is="palette.component"
                  :value="value"
+                 :hexColor="hexColor"
                  @input="setColor">
       </component>
     </v-tab-item>
@@ -32,6 +33,10 @@ export default {
     hideTabs: {
       type: Boolean,
       default: false,
+    },
+    hexColor: {
+      type: String,
+      default: null,
     },
     value: {
       type: [Object, String],
