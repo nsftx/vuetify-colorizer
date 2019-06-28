@@ -33,7 +33,7 @@
       </template>
       <VColorPicker :hide-tabs="hideTabs"
                     :value="value"
-                    :hexColor="color ? color.value : ''"
+                    :hexColor="color"
                     :return-type="returnType"
                     @input="setColor">
       </VColorPicker>

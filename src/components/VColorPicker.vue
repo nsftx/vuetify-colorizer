@@ -35,7 +35,7 @@ export default {
       default: false,
     },
     hexColor: {
-      type: String,
+      type: Object,
       default: null,
     },
     value: {

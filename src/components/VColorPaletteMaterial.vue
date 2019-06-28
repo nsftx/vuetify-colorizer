@@ -50,7 +50,7 @@ export default {
       type: [Object, String],
     },
     hexColor: {
-      type: String,
+      type: Object,
       default: null,
     },
   },
@@ -68,7 +68,7 @@ export default {
       this.setColorFromInput();
     },
     hexColor() {
-      this.hexNum = this.hexColor;
+      this.hexNum = this.hexColor ? this.hexColor.value : null;
     },
   },
   methods: {
