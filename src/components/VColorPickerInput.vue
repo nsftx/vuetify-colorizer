@@ -183,25 +183,16 @@ export default {
     align-items: center;
   }
 
-  .v-input__slot {
-    min-height: 40px !important;
-    height: 40px;
-  }
   .help-icon {
     color: #7a7a7a !important;
     font-size: 14px;
-  }
-
-
-  .v-input input {
-    max-height: 40px;
   }
 
   .color-box-preview {
     border-radius: 4px;
     position: absolute;
     right: 3em;
-    top: 10px;
+    top: 18px;
     width: 20px;
     height: 20px;
     cursor: pointer;
