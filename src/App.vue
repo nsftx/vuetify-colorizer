@@ -1,5 +1,5 @@
 <template>
-  <v-app id="app">
+  <v-app id="app" class="ma-4">
     <VColorPickerInput v-model="color"
                        return-type="value"
                        @change="showColor">
