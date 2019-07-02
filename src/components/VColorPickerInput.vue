@@ -19,14 +19,18 @@
                       :disabled="disabled">
           <template v-slot:label>
             <div>{{label}}
-              <v-tooltip slot="append" top class="help-tooltip">
-              <template v-slot:activator="{ on }">
-                <v-btn icon v-on="on" @click.stop>
-                  <v-icon class="help-icon material-icons-outlined">info</v-icon>
-                </v-btn>
-              </template>
-              <span>Help tooltip</span>
-            </v-tooltip>
+              <v-tooltip slot="append"
+                         top
+                         class="help-tooltip">
+                <template v-slot:activator="{ on }">
+                  <v-btn icon
+                         v-on="on"
+                         @click.stop>
+                    <v-icon class="help-icon material-icons-outlined">info</v-icon>
+                  </v-btn>
+                </template>
+                <span>Help tooltip</span>
+              </v-tooltip>
             </div>
           </template>
         </v-text-field>

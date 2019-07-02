@@ -1,30 +1,32 @@
 <template>
-  <div class="colorizer-palette-material" column>
+  <div class="colorizer-palette-material"
+       column>
     <div class="color-group-wrap">
       <div class="color-group"
-          :key="colorGroupIndex"
-          v-for="(colorGroup, colorGroupIndex) in colorGroups">
+           :key="colorGroupIndex"
+           v-for="(colorGroup, colorGroupIndex) in colorGroups">
         <div class="color-box"
-            :key="color.name"
-            :class="colorClass(color)"
-            :style="colorStyle(color)"
-            :title="color.name"
-            @click="setColor(color)"
-            v-for="color in colorGroup.colors">
-          <div v-if="isSelectedColor(color) && hexColor" class="selected-color-outline"></div>
+             :key="color.name"
+             :class="colorClass(color)"
+             :style="colorStyle(color)"
+             :title="color.name"
+             @click="setColor(color)"
+             v-for="color in colorGroup.colors">
+          <div v-if="isSelectedColor(color) && hexColor"
+               class="selected-color-outline"></div>
         </div>
       </div>
     </div>
-    <div @click.stop class="color-palette-hex">
-      <v-text-field
-        v-model="hexNum"
-        readonly
-        class="text-field-hex"
-        ref="hexField"
-        placeholder="Hex #"
-        outlined>
+    <div @click.stop
+         class="color-palette-hex">
+      <v-text-field v-model="hexNum"
+                    readonly
+                    class="text-field-hex"
+                    ref="hexField"
+                    placeholder="Hex #"
+                    outlined>
       </v-text-field>
-      </div>
+    </div>
   </div>
 </template>
 
@@ -56,7 +58,6 @@ export default {
   },
   data() {
     return {
-      hexNum: null,
       materialColors,
       color: null,
       colors: null,
@@ -67,8 +68,10 @@ export default {
     value() {
       this.setColorFromInput();
     },
-    hexColor() {
-      this.hexNum = this.hexColor ? this.hexColor.value : null;
+  },
+  computed: {
+    hexNum() {
+      return this.hexColor ? this.hexColor.value : null;
     },
   },
   methods: {
@@ -225,7 +228,7 @@ export default {
 
   .text-field-hex {
     padding: 0px !important;
-    color:black !important;
+    color: black !important;
   }
 }
 
@@ -291,5 +294,4 @@ export default {
     }
   }
 }
-
 </style>
