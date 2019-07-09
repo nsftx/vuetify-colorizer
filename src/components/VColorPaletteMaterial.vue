@@ -259,39 +259,17 @@ export default {
   }
 
   .color-group-wrap {
-    width: 355;
     display: flex;
-    flex-direction: row;
   }
 
   .color-group {
-    width: 20px !important;
-    height: 100% !important;
     display: flex;
     flex-direction: column;
-    float: left;
-    margin-bottom: 1px;
   }
 
   .color-box {
-    float: left;
-    width: 20px;
     height: 20px;
-    line-height: 20px;
     cursor: pointer;
-    background-color: whitesmoke;
-    margin-right: 0;
-    text-align: center;
-    font-size: 14px;
-    color: white;
-
-    &-base {
-      width: 40px;
-    }
-
-    &-light {
-      color: black;
-    }
   }
 }
 </style>
