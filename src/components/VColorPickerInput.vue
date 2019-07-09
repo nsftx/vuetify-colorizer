@@ -180,13 +180,6 @@ export default {
     pointer-events: all;
   }
 
-  .help-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
-
   .help-icon {
     color: #7a7a7a !important;
     font-size: 14px;

@@ -82,9 +82,6 @@ export default {
 </script>
 
 <style lang="scss">
-.v-tabs.hidden-bars .v-tabs__bar {
-  display: none;
-}
 .color-tabs-header {
   .v-tabs-bar {
     display: none !important;

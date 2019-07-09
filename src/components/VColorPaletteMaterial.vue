@@ -210,11 +210,11 @@ export default {
     margin-top: 16px;
     width: 200px;
     min-height: 24px !important;
-    margin-bottom: 0px !important;
+    margin-bottom: 0 !important;
     height: 24px;
 
     input[placeholder="Hex #"] {
-      margin-top: 0px !important;
+      margin-top: 0 !important;
       -webkit-user-select: all;
       -moz-user-select: all;
       -ms-user-select: all;
@@ -223,11 +223,11 @@ export default {
   }
 
   .v-text-field--outline input {
-    margin-top: 0px !important;
+    margin-top: 0 !important;
   }
 
   .text-field-hex {
-    padding: 0px !important;
+    padding: 0 !important;
     color: black !important;
   }
 }
@@ -247,7 +247,7 @@ export default {
 
 .colorizer-palette-material {
   background-color: white !important;
-  margin: 0px !important;
+  margin: 0 !important;
   padding: 8px;
   display: flex;
   flex-direction: column;
