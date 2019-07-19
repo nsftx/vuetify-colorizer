@@ -272,4 +272,10 @@ export default {
     cursor: pointer;
   }
 }
+
+.theme--dark {
+  .colorizer-palette-material {
+    background-color: #2d3038 !important;
+  }
+}
 </style>
