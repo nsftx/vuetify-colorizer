@@ -20,7 +20,7 @@
   "dependencies": {
     "lodash": "^4.17.11",
     "vue": "^2.6.10",
-    "vuetify": "^1.5.14"
+    "vuetify": "^2.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.7.0",
