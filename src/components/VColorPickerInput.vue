@@ -169,6 +169,17 @@ export default {
 
 <style lang="scss">
 .colorizer-picker-input {
+  .v-label {
+    .v-btn__content {
+      height: 14px;
+      width: 14px;
+    }
+
+    .v-icon {
+      font-size: 14px !important;
+    }
+  }
+
   .v-btn--icon {
     height: 14px !important;
     width: 14px !important;

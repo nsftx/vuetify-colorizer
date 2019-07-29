@@ -196,6 +196,12 @@ export default {
 </script>
 
 <style lang="scss">
+
+.theme--dark.text-field-hex {
+  fieldset {
+    border-color: #575960 !important;
+  }
+}
 .color-palette-hex {
   height: 50px;
   width: 200px;
@@ -211,7 +217,8 @@ export default {
     width: 200px;
     min-height: 24px !important;
     margin-bottom: 0 !important;
-    height: 24px;
+    height: 24px !important;
+    max-height: 24px !important;
 
     input[placeholder="Hex #"] {
       margin-top: 0 !important;
