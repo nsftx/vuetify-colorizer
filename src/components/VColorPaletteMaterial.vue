@@ -2,30 +2,29 @@
   <div class="colorizer-palette-material"
        column>
     <div class="color-group-wrap">
-      <div class="color-group"
+      <div v-for="(colorGroup, colorGroupIndex) in colorGroups"
            :key="colorGroupIndex"
-           v-for="(colorGroup, colorGroupIndex) in colorGroups">
-        <div class="color-box"
-             :key="color.name"
-             :class="colorClass(color)"
-             :style="colorStyle(color)"
-             :title="color.name"
-             @click="setColor(color)"
-             v-for="color in colorGroup.colors">
-          <div v-if="isSelectedColor(color) && hexColor"
-               class="selected-color-outline"></div>
+           class="color-group">
+        <div v-for="colorValue in colorGroup.colors"
+             :key="colorValue.name"
+             class="color-box"
+             :class="colorClass(colorValue)"
+             :style="colorStyle(colorValue)"
+             :title="colorValue.name"
+             @click="setColor(colorValue)">
+          <div v-if="isSelectedColor(colorValue) && hexColor"
+               class="selected-color-outline" />
         </div>
       </div>
     </div>
-    <div @click.stop
-         class="color-palette-hex">
-      <v-text-field v-model="hexNum"
+    <div class="color-palette-hex"
+         @click.stop>
+      <v-text-field ref="hexField"
+                    v-model="hexNum"
                     readonly
                     class="text-field-hex"
-                    ref="hexField"
                     placeholder="Hex #"
-                    outlined>
-      </v-text-field>
+                    outlined />
     </div>
   </div>
 </template>
@@ -50,6 +49,7 @@ export default {
   props: {
     value: {
       type: [Object, String],
+      default: null,
     },
     hexColor: {
       type: Object,
@@ -64,15 +64,19 @@ export default {
       colorGroups: null,
     };
   },
+  computed: {
+    hexNum() {
+      return this.hexColor ? this.hexColor.value : null;
+    },
+  },
   watch: {
     value() {
       this.setColorFromInput();
     },
   },
-  computed: {
-    hexNum() {
-      return this.hexColor ? this.hexColor.value : null;
-    },
+  mounted() {
+    this.setColors();
+    this.setColorFromInput();
   },
   methods: {
     colorName(groupName, name, isBase) {
@@ -187,10 +191,6 @@ export default {
     sendColorChange() {
       this.$emit('input', this.color);
     },
-  },
-  mounted() {
-    this.setColors();
-    this.setColorFromInput();
   },
 };
 </script>

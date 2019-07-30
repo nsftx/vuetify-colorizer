@@ -2,8 +2,7 @@
   <v-app id="app">
     <VColorPickerInput v-model="color"
                        return-type="value"
-                       @change="showColor">
-    </VColorPickerInput>
+                       @change="showColor" />
   </v-app>
 </template>
 
@@ -11,7 +10,7 @@
 import VColorPickerInput from './components/VColorPickerInput';
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
     VColorPickerInput,
   },
@@ -20,16 +19,16 @@ export default {
       color: null,
     };
   },
-  methods: {
-    showColor(value) {
-      console.log('selected =>', JSON.stringify(value));
-    },
-  },
   mounted() {
     setTimeout(() => {
       this.color = '#f44336';
       console.log('setting color =>', JSON.stringify(this.color));
     }, 5000);
+  },
+  methods: {
+    showColor(value) {
+      console.log('selected =>', JSON.stringify(value));
+    },
   },
 };
 </script>

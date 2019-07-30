@@ -1,24 +1,24 @@
 <template>
   <div class="colorizer-picker-input">
-    <v-menu full-width
+    <v-menu v-model="visible"
+            full-width
             max-width="416px"
-            :return-value="color"
-            v-model="visible">
+            :return-value="color">
       <template v-slot:activator="{ on }">
         <v-text-field readonly
                       outlined
                       hide-details
                       clearable
                       clear-icon="clear"
-                      @click:clear="clearColor"
                       placeholder="Select color"
                       align-center
-                      v-on="on"
                       color="primary"
                       :value="colorName"
-                      :disabled="disabled">
+                      :disabled="disabled"
+                      @click:clear="clearColor"
+                      v-on="on">
           <template v-slot:label>
-            <div>{{label}}
+            <div>{{ label }}
               <v-tooltip slot="append"
                          top
                          class="help-tooltip">
@@ -37,17 +37,15 @@
       </template>
       <VColorPicker :hide-tabs="hideTabs"
                     :value="value"
-                    :hexColor="color"
+                    :hex-color="color"
                     :return-type="returnType"
-                    @input="setColor">
-      </VColorPicker>
+                    @input="setColor" />
     </v-menu>
-    <div class="color-box-preview"
+    <div v-if="color"
+         class="color-box-preview"
          :class="color.name"
          :style="colorStyle"
-         @click="toggleMenu"
-         v-if="color">
-    </div>
+         @click="toggleMenu" />
   </div>
 </template>
 
@@ -78,6 +76,7 @@ export default {
     },
     value: {
       type: [Object, String],
+      default: null,
     },
     returnType: {
       type: String,
@@ -102,6 +101,26 @@ export default {
       return {
         backgroundColor: this.color.value,
       };
+    },
+  },
+  watch: {
+    value: {
+      handler(value) {
+        if (isString(value)) {
+          if (startsWith(value, '#')) {
+            this.setColor({
+              value,
+            });
+          } else {
+            this.setColor({
+              name: value,
+            });
+          }
+        } else {
+          this.setColor(value);
+        }
+      },
+      immediate: true,
     },
   },
   methods: {
@@ -142,26 +161,6 @@ export default {
     },
     toggleMenu() {
       this.visible = !this.visible;
-    },
-  },
-  watch: {
-    value: {
-      handler(value) {
-        if (isString(value)) {
-          if (startsWith(value, '#')) {
-            this.setColor({
-              value,
-            });
-          } else {
-            this.setColor({
-              name: value,
-            });
-          }
-        } else {
-          this.setColor(value);
-        }
-      },
-      immediate: true,
     },
   },
 };
