@@ -1,5 +1,5 @@
 <template>
-  <v-app id="app" class="ma-6">
+  <v-app id="app">
     <VColorPickerInput v-model="color"
                        return-type="value"
                        @change="showColor">
@@ -39,5 +39,6 @@ export default {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 10px;
 }
 </style>
