@@ -1,10 +1,10 @@
 // eslint-disable-next-line
-// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const plugins = [];
 
 if (process.env.NODE_ENV !== 'production') {
-  // plugins.push(new BundleAnalyzerPlugin());
+  plugins.push(new BundleAnalyzerPlugin());
 }
 
 module.exports = {

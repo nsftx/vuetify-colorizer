@@ -1,30 +1,31 @@
 <template>
-  <div class="colorizer-palette-material" column>
+  <div class="colorizer-palette-material"
+       column>
     <div class="color-group-wrap">
-      <div class="color-group"
-          :key="colorGroupIndex"
-          v-for="(colorGroup, colorGroupIndex) in colorGroups">
-        <div class="color-box"
-            :key="color.name"
-            :class="colorClass(color)"
-            :style="colorStyle(color)"
-            :title="color.name"
-            @click="setColor(color)"
-            v-for="color in colorGroup.colors">
-          <div v-if="isSelectedColor(color)" class="selected-color-outline"></div>
+      <div v-for="(colorGroup, colorGroupIndex) in colorGroups"
+           :key="colorGroupIndex"
+           class="color-group">
+        <div v-for="colorValue in colorGroup.colors"
+             :key="colorValue.name"
+             class="color-box"
+             :class="colorClass(colorValue)"
+             :style="colorStyle(colorValue)"
+             :title="colorValue.name"
+             @click="setColor(colorValue)">
+          <div v-if="isSelectedColor(colorValue) && hexColor"
+               class="selected-color-outline" />
         </div>
       </div>
     </div>
-    <div @click.stop class="color-palette-hex">
-      <v-text-field
-        v-model="hexNum"
-        readonly
-        class="text-field-hex"
-        ref="hexField"
-        placeholder="Hex #"
-        outline>
-      </v-text-field>
-      </div>
+    <div class="color-palette-hex"
+         @click.stop>
+      <v-text-field ref="hexField"
+                    v-model="hexNum"
+                    readonly
+                    class="text-field-hex"
+                    placeholder="Hex #"
+                    outlined />
+    </div>
   </div>
 </template>
 
@@ -48,21 +49,34 @@ export default {
   props: {
     value: {
       type: [Object, String],
+      default: null,
+    },
+    hexColor: {
+      type: Object,
+      default: null,
     },
   },
   data() {
     return {
-      hexNum: null,
       materialColors,
       color: null,
       colors: null,
       colorGroups: null,
     };
   },
+  computed: {
+    hexNum() {
+      return this.hexColor ? this.hexColor.value : null;
+    },
+  },
   watch: {
     value() {
       this.setColorFromInput();
     },
+  },
+  mounted() {
+    this.setColors();
+    this.setColorFromInput();
   },
   methods: {
     colorName(groupName, name, isBase) {
@@ -105,7 +119,6 @@ export default {
       return this.color && color.name === this.color.name;
     },
     setColor(color) {
-      this.hexNum = color.value;
       this.color = color;
       this.sendColorChange();
     },
@@ -179,20 +192,22 @@ export default {
       this.$emit('input', this.color);
     },
   },
-  mounted() {
-    this.setColors();
-    this.setColorFromInput();
-  },
 };
 </script>
 
-<style lang="stylus">
+<style lang="scss">
+
+.theme--dark.text-field-hex {
+  fieldset {
+    border-color: #575960 !important;
+  }
+}
 .color-palette-hex {
   height: 50px;
   width: 200px;
 
   .v-text-field__details {
-    height: 0px !important;
+    display: none !important;
   }
 
   .v-input__slot {
@@ -201,11 +216,12 @@ export default {
     margin-top: 16px;
     width: 200px;
     min-height: 24px !important;
-    margin-bottom: 0px !important;
-    height: 24px;
-    border: 1px solid #dedede !important;
+    margin-bottom: 0 !important;
+    height: 24px !important;
+    max-height: 24px !important;
 
     input[placeholder="Hex #"] {
+      margin-top: 0 !important;
       -webkit-user-select: all;
       -moz-user-select: all;
       -ms-user-select: all;
@@ -214,11 +230,12 @@ export default {
   }
 
   .v-text-field--outline input {
-    margin-top: 0px !important;
+    margin-top: 0 !important;
   }
 
   .text-field-hex {
-    padding: 0px !important;
+    padding: 0 !important;
+    color: black !important;
   }
 }
 
@@ -237,56 +254,35 @@ export default {
 
 .colorizer-palette-material {
   background-color: white !important;
-  margin: 0px !important;
+  margin: 0 !important;
   padding: 8px;
   display: flex;
   flex-direction: column;
   background-color: whitesmoke;
+  height: 360px;
 
   .color-box-base {
     width: 20px !important;
   }
 
   .color-group-wrap {
-    width: 355;
     display: flex;
-    flex-direction: row;
   }
 
   .color-group {
-    width: 20px !important;
-    height: 100% !important;
     display: flex;
     flex-direction: column;
   }
 
-  .color-group {
-    float: left;
-    width: $width;
-    height: $colorSize;
-    margin-bottom: 1px;
-  }
-
   .color-box {
-    float: left;
-    width: 20px;
     height: 20px;
-    line-height: 20px;
     cursor: pointer;
-    background-color: whitesmoke;
-    margin-right: 0;
-    text-align: center;
-    font-size: 14px;
-    color: white;
-
-    &-base {
-      width: 40px;
-    }
-
-    &-light {
-      color: black;
-    }
   }
 }
 
+.theme--dark {
+  .colorizer-palette-material {
+    background-color: #2d3038 !important;
+  }
+}
 </style>

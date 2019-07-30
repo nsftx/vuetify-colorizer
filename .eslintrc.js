@@ -1,5 +1,4 @@
 const isProduction = process.env.NODE_ENV === 'production';
-const webpackConfigPath = './node_modules/@vue/cli-service/webpack.config.js';
 
 module.exports = {
   root: true,
@@ -8,7 +7,7 @@ module.exports = {
     jest: true,
   },
   extends: [
-    'plugin:vue/essential',
+    'plugin:vue/recommended',
     '@vue/airbnb',
   ],
   parserOptions: {
@@ -17,20 +16,28 @@ module.exports = {
   plugins: [
     'vue',
     'jest',
+    'vuetify',
   ],
   rules: {
+    'vuetify/no-deprecated-classes': 'error',
+    'vuetify/grid-unknown-attributes': 'error',
+    'vuetify/no-legacy-grid': 'error',
+    'vue/max-attributes-per-line': ['error', {
+      multiline: {
+        allowFirstLine: true,
+      },
+    }],
     'import/extensions': ['error', 'always', {
       js: 'never',
       vue: 'never',
     }],
     'no-debugger': isProduction ? 'error' : 'off',
     'no-console': isProduction ? 'error' : 'off',
-  },
-  settings: {
-    'import/resolver': {
-      webpack: {
-        config: webpackConfigPath,
-      },
-    },
+    'vue/singleline-html-element-content-newline': 'off',
+    'vue/multiline-html-element-content-newline': 'off',
+    'vue/html-closing-bracket-newline': ['error', {
+      singleline: 'never',
+      multiline: 'never',
+    }],
   },
 };

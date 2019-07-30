@@ -1,22 +1,21 @@
 <template>
-  <v-tabs dark
+  <v-tabs v-model="activePaletteIndex"
           class="color-tabs-header"
           show-arrows
           color="primary"
           slider-color="secondary"
-          :class="{ 'hidden-bars': hideTabs }"
-          v-model="activePaletteIndex">
-    <v-tab :key="palette.key"
-           @click="setPalleteIndex(index)"
-           v-for="(palette, index) in palettes">
-      {{palette.name}}
+          :class="{ 'hidden-bars': hideTabs }">
+    <v-tab v-for="(palette, index) in palettes"
+           :key="palette.key"
+           @click="setPalleteIndex(index)">
+      {{ palette.name }}
     </v-tab>
-    <v-tab-item :key="palette.key"
-                v-for="palette in palettes">
+    <v-tab-item v-for="palette in palettes"
+                :key="palette.key">
       <component :is="palette.component"
                  :value="value"
-                 @input="setColor">
-      </component>
+                 :hex-color="hexColor"
+                 @input="setColor" />
     </v-tab-item>
   </v-tabs>
 </template>
@@ -34,8 +33,13 @@ export default {
       type: Boolean,
       default: false,
     },
+    hexColor: {
+      type: Object,
+      default: null,
+    },
     value: {
       type: [Object, String],
+      default: null,
     },
     returnType: {
       type: String,
@@ -77,14 +81,10 @@ export default {
 };
 </script>
 
-<style lang="stylus">
-.v-tabs.hidden-bars .v-tabs__bar {
-  display: none;
-}
+<style lang="scss">
 .color-tabs-header {
-  .v-tabs__bar {
+  .v-tabs-bar {
     display: none !important;
   }
 }
-
 </style>
