@@ -1,7 +1,6 @@
 <template>
   <div class="colorizer-picker-input">
     <v-menu v-model="visible"
-            full-width
             max-width="416px"
             :return-value="color">
       <template v-slot:activator="{ on }">
